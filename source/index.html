@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="lib/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+        <link rel="stylesheet" href="styles/structural.css">
+        <link rel="stylesheet" href="styles/themes/default/aesthetic.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
+    <body dir="ltr">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button id="mainNavToggleButton" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle menu navigation</span>
+						<span><i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i></span>
+					</button>
+					<button id="sidebarNavToggleButton" type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
+						<span class="sr-only">Toggle sidebar navigation</span>
+						<span><i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i></span>
+					</button>
+					<a class="navbar-brand" href="#">Backbone Seed</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Dashboard</a></li>
+						<li><a href="#">Settings</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Action</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li role="separator" class="divider"></li>
+								<li class="dropdown-header">Nav header</li>
+								<li><a href="#">Separated link</a></li>
+								<li><a href="#">One more separated link</a></li>
+							</ul>
+						</li>
+					</ul>
+					<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container-fluid">
+
+			<div class="row row-offcanvas row-offcanvas-left">
+				<div id="sidebar" class="col-sm-3 col-md-2 sidebar-offcanvas" role="navigation">
+					<ul class="nav nav-sidebar">
+						<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+						<li><a href="#">Reports</a></li>
+						<li><a href="#">Analytics</a></li>
+						<li><a href="#">Export</a></li>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<li><a href="">Nav item</a></li>
+						<li><a href="">Nav item again</a></li>
+						<li><a href="">One more nav</a></li>
+						<li><a href="">Another nav item</a></li>
+						<li><a href="">More navigation</a></li>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<li><a href="">Nav item again</a></li>
+						<li><a href="">One more nav</a></li>
+						<li><a href="">Another nav item</a></li>
+					</ul>
+				</div>
+
+				<div id="layout" class="col-sm-9 col-md-10 main">
+
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer">
+			<p class="pull-right">&copy; Dilan Perera, 2016.</p>
+		</footer>
+        <div id="dialog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+		<div id="notification"></div>
+		<div id="splash"></div>
+        <div id="error"></div>
+        <script type="text/javascript">
+            var VERSION = '1.0.0';
+        </script>
+        <script type="text/javascript" data-main="scripts/main" src="lib/requirejs/require.js"></script>
+    </body>
+</html>

@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6355D7DA-02F9-4A51-B5D6-1B41C56990B5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BackboneJS_RequireAMD_Seed</RootNamespace>
+    <AssemblyName>BackboneJS-RequireAMD-Seed</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".bowerrc" />
+    <Content Include="app\Application.js" />
+    <Content Include="app\controllers\DefaultController.js" />
+    <Content Include="app\regions\LayoutRegion.js" />
+    <Content Include="app\regions\SidebarRegion.js" />
+    <Content Include="app\regions\ContentRegion.js" />
+    <Content Include="app\routers\DefaultRouter.js" />
+    <Content Include="app\services\SampleService.js" />
+    <Content Include="app\services\Service.js" />
+    <Content Include="app\views\NavigationManager.js" />
+    <Content Include="app\views\EventManager.js" />
+    <None Include="app\views\pages\formview\main.tmpl" />
+    <Content Include="app\views\pages\formview\FormView.js" />
+    <Content Include="app\views\pages\tabularview\TabularView.js" />
+    <Content Include="app\_TemplateView.js" />
+    <Content Include="app\views\pages\dashboard\DashboardView.js" />
+    <Content Include="app\views\widgets\contentcontainer\ContentContainer.js" />
+    <Content Include="lib\backbone-nested-model\backbone-nested.js" />
+    <Content Include="lib\backbone.babysitter\lib\backbone.babysitter.min.js" />
+    <Content Include="lib\backbone.localStorage\backbone.localStorage-min.js" />
+    <Content Include="lib\backbone.marionette\lib\backbone.marionette.min.js" />
+    <Content Include="lib\backbone.radio\build\backbone.radio.min.js" />
+    <Content Include="lib\backbone.stickit\backbone.stickit.js" />
+    <Content Include="lib\backbone.wreqr\lib\backbone.wreqr.min.js" />
+    <Content Include="lib\backbone\backbone-min.js" />
+    <Content Include="lib\bootstrap-material-design\dist\css\bootstrap-material-design.min.css" />
+    <Content Include="lib\bootstrap-material-design\dist\css\ripples.min.css" />
+    <Content Include="lib\bootstrap-material-design\dist\js\material.min.js" />
+    <Content Include="lib\bootstrap-material-design\dist\js\ripples.min.js" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="lib\datatables.net-bs\css\dataTables.bootstrap.min.css" />
+    <Content Include="lib\datatables.net-bs\js\dataTables.bootstrap.min.js" />
+    <Content Include="lib\datatables.net-responsive-bs\css\responsive.bootstrap.min.css" />
+    <Content Include="lib\datatables.net-responsive-bs\js\responsive.bootstrap.js" />
+    <Content Include="lib\datatables.net-responsive\js\dataTables.responsive.min.js" />
+    <Content Include="lib\datatables.net\js\jquery.dataTables.min.js" />
+    <Content Include="lib\jquery\dist\jquery.min.js" />
+    <Content Include="lib\requirejs-domready\domReady.js" />
+    <Content Include="lib\requirejs-i18n\i18n.js" />
+    <Content Include="lib\requirejs-plugins\src\async.js" />
+    <Content Include="lib\requirejs-plugins\src\depend.js" />
+    <Content Include="lib\requirejs-plugins\src\font.js" />
+    <Content Include="lib\requirejs-plugins\src\goog.js" />
+    <Content Include="lib\requirejs-plugins\src\image.js" />
+    <Content Include="lib\requirejs-plugins\src\json.js" />
+    <Content Include="lib\requirejs-plugins\src\mdown.js" />
+    <Content Include="lib\requirejs-plugins\src\noext.js" />
+    <Content Include="lib\requirejs-plugins\src\propertyParser.js" />
+    <Content Include="lib\requirejs-text\text.js" />
+    <Content Include="lib\requirejs\require.js" />
+    <Content Include="lib\underscore\underscore-min.js" />
+    <Content Include="styles\structural.css" />
+    <Content Include="styles\themes\default\aesthetic.css" />
+    <Content Include="app\views\pages\dashboard\main.tmpl" />
+    <Content Include="app\views\widgets\contentcontainer\contentcontainer.tmpl" />
+    <Content Include="app\views\pages\tabularview\main.tmpl" />
+    <None Include="bower.json" />
+    <Content Include="favicon.ico" />
+    <Content Include="index.html" />
+    <Content Include="readme.txt" />
+    <Content Include="scripts\config.js" />
+    <Content Include="scripts\main.js" />
+    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\collections\" />
+    <Folder Include="app\models\" />
+    <Folder Include="lib\requirejs-plugins\lib\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56627</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56627/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
