@@ -14,17 +14,15 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone-marionette');
 
-    var ViewTemplate = require('<path_to_template>.tmpl');
-    var EventManager = require('app/views/EventManager');
-    var NavigationManager = require('app/routing/NavigationManager');
+    var EventManager = require('views/EventManager');
 
 	//#endregion
 
-    var _TemplateView = Marionette.View.extend({
+    var Footer = Marionette.View.extend({
 
     	//#region Fields - Instance Member
 
-		_viewTemplate: ViewTemplate,
+		el: '#footer',
     	_eventManager: null,
 
     	//#endregion
@@ -129,5 +127,5 @@ define(function (require)
 
 	//#endregion
 
-    return _TemplateView;
+    return Footer;
 });

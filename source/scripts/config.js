@@ -3,8 +3,9 @@
 require.config({
     baseUrl: '../app',
     paths: {
-        'require-domReady': '../lib/requirejs-domready/domReady',
-        'require-text': '../lib/requirejs-text/text.js',
+        'domReady': '../lib/requirejs-domready/domReady',
+        'text': '../lib/requirejs-text/text',
+        'i18n': '../lib/requirejs-i18n/i18n',
         'underscore': '../lib/underscore/underscore-min',
         'backbone': '../lib/backbone/backbone-min',
         'backbone-nested-model': '../lib/backbone-nested-model/backbone-nested',

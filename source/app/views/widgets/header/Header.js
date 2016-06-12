@@ -14,28 +14,30 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone-marionette');
 
-    var ViewTemplate = require('<path_to_template>.tmpl');
-    var EventManager = require('app/views/EventManager');
-    var NavigationManager = require('app/routing/NavigationManager');
+    var EventManager = require('views/EventManager');
 
 	//#endregion
 
-    var _TemplateView = Marionette.View.extend({
+    var Header = Marionette.View.extend({
 
     	//#region Fields - Instance Member
 
-		_viewTemplate: ViewTemplate,
+		el: '#header',
     	_eventManager: null,
 
     	//#endregion
 
 		//#region Hashes - Instance Member
 
-    	ui: {
+    	ui:
+		{
+			'offcanvasToggleButton': '[data-toggle=offcanvas]',
+			'offcanvasRow': '.row-offcanvas'
     	},
 
     	events:
 		{
+			'click @ui.offcanvasToggleButton': '_onOffCanvasMenuToggled'
 		},
 
 		//#endregion
@@ -46,10 +48,13 @@ define(function (require)
 
     	constructor: function()
     	{
-
 			Marionette.View.apply(this, arguments);
     	},
 
+    	//#endregion
+
+    	//#region Functions - Instance Member - (getters/setters)
+		
     	//#endregion
 
     	//#region Functions - Instance Member - (view lifecycle)
@@ -57,7 +62,7 @@ define(function (require)
     	initialize: function()
     	{
     		this._eventManager = new EventManager(this);
-
+			
     		Marionette.View.prototype.initialize.call(this);
     	},
 
@@ -78,13 +83,18 @@ define(function (require)
     	template: function()
     	{
     		return this._viewTemplate;
-		}
+		},
 
     	//#endregion
 
     	//#region Functions - Instance Member - (callbacks)
 
     	//#region Functions - Instance Member - (callbacks) - (UI event handlers)
+
+    	_onOffCanvasMenuToggled: function(e)
+    	{
+			this.ui.offcanvasRow.toggleClass('active');
+    	}
 
     	//#endregion
 
@@ -129,5 +139,5 @@ define(function (require)
 
 	//#endregion
 
-    return _TemplateView;
+    return Header;
 });

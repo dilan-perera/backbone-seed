@@ -22,7 +22,7 @@ define(function (require) {
 
     	//#region Fields - Instance Member
 
-    	el: '#content'
+    	el: '#contentRegion'
       
     	//#endregion
 

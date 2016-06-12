@@ -14,13 +14,14 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone-marionette');
 
-    var ViewTemplate = require('<path_to_template>.tmpl');
-    var EventManager = require('app/views/EventManager');
-    var NavigationManager = require('app/routing/NavigationManager');
+    var ViewTemplate = require('text!views/widgets/menu/main.tmpl');
+    var EventManager = require('views/EventManager');
+    var RoutingTable = require('routing/RoutingTable');
+    var NavigationManager = require('routing/NavigationManager');
 
 	//#endregion
 
-    var _TemplateView = Marionette.View.extend({
+    var Menu = Marionette.View.extend({
 
     	//#region Fields - Instance Member
 
@@ -31,11 +32,14 @@ define(function (require)
 
 		//#region Hashes - Instance Member
 
-    	ui: {
+    	ui:
+		{
+			'items': '[data-route]'
     	},
 
     	events:
 		{
+			'click @ui.items': '_onItemClicked'
 		},
 
 		//#endregion
@@ -46,10 +50,13 @@ define(function (require)
 
     	constructor: function()
     	{
-
 			Marionette.View.apply(this, arguments);
     	},
 
+    	//#endregion
+
+    	//#region Functions - Instance Member - (getters/setters)
+		
     	//#endregion
 
     	//#region Functions - Instance Member - (view lifecycle)
@@ -63,6 +70,8 @@ define(function (require)
 
     	render: function ()
     	{
+			this.$el.html(this.template());
+
     		Marionette.View.prototype.render.call(this);
 
     		return this;
@@ -78,13 +87,24 @@ define(function (require)
     	template: function()
     	{
     		return this._viewTemplate;
-		}
+		},
 
     	//#endregion
 
     	//#region Functions - Instance Member - (callbacks)
 
     	//#region Functions - Instance Member - (callbacks) - (UI event handlers)
+
+    	_onItemClicked: function (e)
+    	{
+    		e.preventDefault();
+
+    		var element = $(e.currentTarget);
+    		var routeName = element.attr('data-route');
+    		var route = RoutingTable.fromName(routeName);
+			
+    		NavigationManager.navigate(route);
+    	}
 
     	//#endregion
 
@@ -129,5 +149,5 @@ define(function (require)
 
 	//#endregion
 
-    return _TemplateView;
+    return Menu;
 });

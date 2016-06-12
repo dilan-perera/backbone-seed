@@ -35,8 +35,11 @@ define(function (require)
 
     EventManager.prototype.destroy = function()
     {
-    	this._view.model.off(null, null, this);
-    	this._view.model = null;
+    	if (this._view.model)
+    	{
+    		this._view.model.off(null, null, this);
+    		this._view.model = null;
+    	}
 
     	this._view.remove();
     	this._view.unbind();
@@ -44,7 +47,6 @@ define(function (require)
 
     	this._view.$el.remove();
     	this._view.$el.unbind();
-    	this._view.$el.undelegateEvents();
 
     	this._view.$el.empty();
     }

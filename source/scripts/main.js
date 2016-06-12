@@ -3,7 +3,9 @@
 require(['config'], function () {
 
     require([
-        'require-domReady',
+        'domReady',
+        'text',
+        'i18n',
         'jquery',
         'underscore',
         'backbone',
@@ -12,6 +14,8 @@ require(['config'], function () {
         'Application'
     ], function (
         domReady,
+        text,
+        i18n,
         $,
         _,
         Backbone,
@@ -26,7 +30,9 @@ require(['config'], function () {
 
     		var application = new Application(args);
 
-    		application.start();
+    		window.application = application;
+
+    		window.application.start();
     	};
 
     	require(['bootstrap'], function ()

@@ -7,9 +7,14 @@ define(function (require) {
     var Backbone = require('backbone');
     var Marionette = require('backbone-marionette');
 
-    var DefaultRouter = require('routers/DefaultRouter');
+    var RoutingTable = require('routing/RoutingTable');
+    var DefaultRouter = require('routing/DefaultRouter');
 
     var Application = Marionette.Application.extend({
+
+    	routers:
+		{
+    	},
 
         constructor: function (options)
         {
@@ -18,30 +23,46 @@ define(function (require) {
             Marionette.Application.prototype.constructor.call(this);
         },
 
-        initialize: function() {
+        initialize: function ()
+        {
         },
 
-        onStart: function () {
-            var router = new DefaultRouter({
+        onStart: function ()
+        {
+			this.routers[DefaultRouter.NAME] = new DefaultRouter({
                 pushState: true,
                 initialData: this.options.initialData
             });
-
+			            
 			if ($.material)
 			{
 				$.material.init();
 			}
-
-			$('[data-toggle=offcanvas]').click(function ()
+			            
+			if (Backbone.history)
 			{
-				$('.row-offcanvas').toggleClass('active');
-			});
-            
-            if (Backbone.history) {
-                Backbone.history.start();
+				if (!(Backbone.history.started))
+				{
+					Backbone.history.start({ pushState: true });
+				}
             }
+        },
+
+        navigate: function(route, data)
+        {
+        	var router = this.routers[route.router];
+
+        	if (router)
+        	{
+        		if (router.processNavigationRequest)
+        		{
+        			router.processNavigationRequest(route, data);
+        		}
+        	}
         }
-    });
+    },
+	{
+	});
 
     return Application;
 });

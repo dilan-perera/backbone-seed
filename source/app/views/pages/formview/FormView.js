@@ -14,28 +14,33 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone-marionette');
 
-    var ViewTemplate = require('app/views/formview/main.tmpl');
-    var EventManager = require('app/views/EventManager');
-    var NavigationManager = require('app/views/NavigationManager');
+    var ViewTemplate = require('text!views/pages/formview/main.tmpl');
+    var EventManager = require('views/EventManager');
+    var NavigationManager = require('routing/NavigationManager');
+    var SampleService = require('services/SampleService');
 
 	//#endregion
 
-    var FormView = new Marionette.View({
+    var FormView = Marionette.View.extend({
 
     	//#region Fields - Instance Member
 
-		_viewTemplate: ViewTemplate,
+    	_viewTemplate: ViewTemplate,
     	_eventManager: null,
+    	_sampleService: null,
 
     	//#endregion
 
-		//#region Hashes - Instance Member
+    	//#region Hashes - Instance Member
 
-    	ui: {
+    	ui:
+		{
+			'acceptFormActionButton': '#acceptFormActionButton'
     	},
 
     	events:
 		{
+			'click @ui.acceptFormActionButton': '_onAcceptClicked'
 		},
 
 		//#endregion
@@ -46,6 +51,11 @@ define(function (require)
 
     	constructor: function()
     	{
+    		this._sampleService = new SampleService();
+
+    		this._sampleService.on('dataSaveSuccessful', $.proxy(this._onDataSaveSuccess, this));
+    		this._sampleService.on('dataSaveFailed', $.proxy(this._onDataSaveFailure, this));
+
 			Marionette.View.apply(this, arguments);
     	},
 
@@ -62,6 +72,8 @@ define(function (require)
 
     	render: function ()
     	{
+			this.$el.html(this.template());
+
     		Marionette.View.prototype.render.call(this);
 
     		return this;
@@ -71,19 +83,42 @@ define(function (require)
     	{
     		Marionette.View.prototype.destroy.call(this);
 
+    		this._sampleService.destroy();
     		this._eventManager.destroy();
     	},
 
     	template: function()
     	{
     		return this._viewTemplate;
-		}
+		},
 
     	//#endregion
 
     	//#region Functions - Instance Member - (callbacks)
 
     	//#region Functions - Instance Member - (callbacks) - (UI event handlers)
+
+    	_onAcceptClicked: function(e)
+    	{
+    		debugger;
+    		this._attemptDataSave();
+    	},
+
+    	//#endregion
+
+    	//#region Functions - Instance Member - (callbacks) - (services)
+
+    	_onDataSaveSuccess: function(data)
+    	{
+    		// TODO: show success message
+     		alert('Success!');
+   		},
+
+    	_onDataSaveFailure: function(ex)
+    	{
+    		// TODO: show error message
+    		alert('Error!');
+    	},
 
     	//#endregion
 
@@ -104,6 +139,13 @@ define(function (require)
     	//#endregion
 		
     	//#region Functions - Instance Member - (helpers) - (service invocations)
+
+    	_attemptDataSave: function()
+    	{
+    		var request = {};
+
+    		this._sampleService.saveData(request);
+		}
 
     	//#endregion
 		

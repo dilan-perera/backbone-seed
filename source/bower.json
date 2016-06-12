@@ -31,11 +31,11 @@
     "datatables.net-responsive-bs": "^2.1.0",
     "requirejs-plugins": "^1.0.3",
     "requirejs-domready": "^2.0.1",
+    "requirejs-text": "^2.0.15",
     "requirejs-i18n": "^2.0.6",
     "bootstrap-material-design": "^0.5.10"
   },
   "resolutions": {
-    "backbone": ">=0.9.2",
-    "jquery": ">=1.7"
+    "backbone": ">=0.9.2"
   }
 }

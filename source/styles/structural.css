@@ -43,6 +43,11 @@ body
 	border-bottom: 1px solid #eee;
 }
 
+.global-search
+{
+	font-weight: 300;
+}
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
@@ -90,19 +95,33 @@ body
 	margin-left: -15px;
 }
 
-	.nav-sidebar > li > a
-	{
-		padding-right: 20px;
-		padding-left: 20px;
-	}
+.nav-sidebar > li > a
+{
+	padding-right: 20px;
+	padding-left: 20px;
+}
 
-	.nav-sidebar > .active > a,
-	.nav-sidebar > .active > a:hover,
-	.nav-sidebar > .active > a:focus
-	{
-		color: #fff;
-		background-color: #428bca;
-	}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus
+{
+	color: #fff;
+	background-color: #428bca;
+}
+
+.navbar-left
+{
+	width: 200px;
+	-ms-text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	line-height: 20px;
+	padding-left: 90px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-weight: bold;
+	font-size: 18px;
+}
 
 
 /*

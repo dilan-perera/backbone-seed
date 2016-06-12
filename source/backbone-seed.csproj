@@ -43,29 +43,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".bowerrc" />
     <Content Include="app\Application.js" />
     <Content Include="app\controllers\DefaultController.js" />
-    <Content Include="app\regions\LayoutRegion.js" />
+    <Content Include="app\layouts\DefaultLayout.js" />
     <Content Include="app\regions\SidebarRegion.js" />
     <Content Include="app\regions\ContentRegion.js" />
-    <Content Include="app\routers\DefaultRouter.js" />
+    <Content Include="app\routing\DefaultRouter.js" />
+    <Content Include="app\routing\RoutingTable.js" />
     <Content Include="app\services\SampleService.js" />
     <Content Include="app\services\Service.js" />
-    <Content Include="app\views\NavigationManager.js" />
+    <Content Include="app\routing\NavigationManager.js" />
     <Content Include="app\views\EventManager.js" />
     <None Include="app\views\pages\formview\main.tmpl" />
     <Content Include="app\views\pages\formview\FormView.js" />
     <Content Include="app\views\pages\tabularview\TabularView.js" />
+    <Content Include="app\views\widgets\content\Content.js" />
+    <Content Include="app\views\widgets\footer\Footer.js" />
+    <Content Include="app\views\widgets\header\Header.js" />
+    <Content Include="app\views\widgets\menu\Menu.js" />
     <Content Include="app\_TemplateView.js" />
     <Content Include="app\views\pages\dashboard\DashboardView.js" />
-    <Content Include="app\views\widgets\contentcontainer\ContentContainer.js" />
     <Content Include="lib\backbone-nested-model\backbone-nested.js" />
     <Content Include="lib\backbone.babysitter\lib\backbone.babysitter.min.js" />
     <Content Include="lib\backbone.localStorage\backbone.localStorage-min.js" />
@@ -105,9 +106,9 @@
     <Content Include="lib\underscore\underscore-min.js" />
     <Content Include="styles\structural.css" />
     <Content Include="styles\themes\default\aesthetic.css" />
-    <Content Include="app\views\pages\dashboard\main.tmpl" />
-    <Content Include="app\views\widgets\contentcontainer\contentcontainer.tmpl" />
+    <None Include="app\views\pages\dashboard\main.tmpl" />
     <Content Include="app\views\pages\tabularview\main.tmpl" />
+    <None Include="app\views\widgets\menu\main.tmpl" />
     <None Include="bower.json" />
     <Content Include="favicon.ico" />
     <Content Include="index.html" />
@@ -118,11 +119,25 @@
     <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="packages.config" />
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\collections\" />
     <Folder Include="app\models\" />
     <Folder Include="lib\requirejs-plugins\lib\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

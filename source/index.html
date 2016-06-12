@@ -20,74 +20,56 @@
         <link rel="icon" type="image/x-icon" href="favicon.ico">
     </head>
     <body dir="ltr">
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button id="mainNavToggleButton" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle menu navigation</span>
-						<span><i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i></span>
-					</button>
-					<button id="sidebarNavToggleButton" type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
-						<span class="sr-only">Toggle sidebar navigation</span>
-						<span><i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i></span>
-					</button>
-					<a class="navbar-brand" href="#">Backbone Seed</a>
-				</div>
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Dashboard</a></li>
-						<li><a href="#">Settings</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li role="separator" class="divider"></li>
-								<li class="dropdown-header">Nav header</li>
-								<li><a href="#">Separated link</a></li>
-								<li><a href="#">One more separated link</a></li>
+		<header id="header">
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button id="mainNavToggleButton" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle menu navigation</span>
+							<span><i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i></span>
+						</button>
+						<button id="sidebarNavToggleButton" type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
+							<span class="sr-only">Toggle sidebar navigation</span>
+							<span><i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i></span>
+						</button>
+						<a class="navbar-brand" href="#">Backbone Seed</a>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-left">
+							<li><span id="viewTitle">View Title</span></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+								<li><a href="#">Dashboard</a></li>
+								<li><a href="#">Settings</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Action</a></li>
+										<li><a href="#">Another action</a></li>
+										<li><a href="#">Something else here</a></li>
+										<li role="separator" class="divider"></li>
+										<li class="dropdown-header">Nav header</li>
+										<li><a href="#">Separated link</a></li>
+										<li><a href="#">One more separated link</a></li>
+									</ul>
+								</li>
 							</ul>
-						</li>
-					</ul>
-					<form class="navbar-form navbar-right">
-						<input type="text" class="form-control" placeholder="Search...">
-					</form>
+							<form class="navbar-form navbar-right">
+								<input type="text" class="form-control global-search" placeholder="Search...">
+							</form>
+					</div>
 				</div>
-			</div>
-		</nav>
-
-		<div class="container-fluid">
-
+			</nav>
+		</header>
+		<div id="content" class="container-fluid">
 			<div class="row row-offcanvas row-offcanvas-left">
-				<div id="sidebar" class="col-sm-3 col-md-2 sidebar-offcanvas" role="navigation">
-					<ul class="nav nav-sidebar">
-						<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-						<li><a href="#">Reports</a></li>
-						<li><a href="#">Analytics</a></li>
-						<li><a href="#">Export</a></li>
-					</ul>
-					<ul class="nav nav-sidebar">
-						<li><a href="">Nav item</a></li>
-						<li><a href="">Nav item again</a></li>
-						<li><a href="">One more nav</a></li>
-						<li><a href="">Another nav item</a></li>
-						<li><a href="">More navigation</a></li>
-					</ul>
-					<ul class="nav nav-sidebar">
-						<li><a href="">Nav item again</a></li>
-						<li><a href="">One more nav</a></li>
-						<li><a href="">Another nav item</a></li>
-					</ul>
+				<div id="sidebarRegion" class="col-sm-3 col-md-2 sidebar-offcanvas" role="navigation">
 				</div>
-
-				<div id="layout" class="col-sm-9 col-md-10 main">
-
+				<div id="contentRegion" class="col-sm-9 col-md-10 main">
 				</div>
 			</div>
 		</div>
-
-		<footer class="footer">
+		<footer id="footer" class="footer">
 			<p class="pull-right">&copy; Dilan Perera, 2016.</p>
 		</footer>
         <div id="dialog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

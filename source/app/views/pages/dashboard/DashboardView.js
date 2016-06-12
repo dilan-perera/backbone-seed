@@ -14,13 +14,13 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone-marionette');
 
-    var ViewTemplate = require('app/views/dashboard/main.tmpl');
-    var EventManager = require('app/views/EventManager');
-    var NavigationManager = require('app/views/NavigationManager');
+    var ViewTemplate = require('text!views/pages/dashboard/main.tmpl');
+    var EventManager = require('views/EventManager');
+    var NavigationManager = require('routing/NavigationManager');
 
 	//#endregion
 
-    var DashboardView = new Marionette.View({
+    var DashboardView = Marionette.View.extend({
 
     	//#region Fields - Instance Member
 
@@ -62,6 +62,8 @@ define(function (require)
 
     	render: function ()
     	{
+    		this.$el.html(this.template());
+
     		Marionette.View.prototype.render.call(this);
 
     		return this;

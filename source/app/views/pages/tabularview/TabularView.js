@@ -14,13 +14,13 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone-marionette');
 
-    var ViewTemplate = require('app/views/tabularview/main.tmpl');
-    var EventManager = require('app/views/EventManager');
-    var NavigationManager = require('app/views/NavigationManager');
+    var ViewTemplate = require('views/tabularview/main.tmpl');
+    var EventManager = require('views/EventManager');
+    var NavigationManager = require('routing/NavigationManager');
 
 	//#endregion
 
-    var TabularView = new Marionette.View({
+    var TabularView = Marionette.View.extend({
 
     	//#region Fields - Instance Member
 
