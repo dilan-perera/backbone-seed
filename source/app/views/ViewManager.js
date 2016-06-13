@@ -19,7 +19,7 @@ define(function (require)
 
     //#region Functions - Instance Member - (constructors)
 
-    function EventManager(view)
+    function ViewManager(view)
     {
     	this._view = null;
 
@@ -31,29 +31,33 @@ define(function (require)
 
 	//#endregion
 
-	//#region Functions - Instance Member - (event management services)
+	//#region Functions - Instance Member - (view management services)
 
-    EventManager.prototype.destroy = function()
+    ViewManager.prototype.getUI = function(key)
     {
-    	if (this._view.model)
-    	{
-    		this._view.model.off(null, null, this);
-    		this._view.model = null;
-    	}
+    	var result = null;
 
-    	this._view.remove();
-    	this._view.unbind();
-    	this._view.undelegateEvents();
+		if (this._view.ui)
+		{
+    		if (this._view.ui[key])
+    		{
+    			var selector = this._view.ui[key];
 
-    	this._view.$el.remove();
-    	this._view.$el.unbind();
+    			result = this.getElement(selector);
+    		}
+		}
 
-    	this._view.$el.empty();
+    	return result;
+    }
+
+    ViewManager.prototype.getElement = function(selector)
+    {
+    	return this._view.$el.find(selector);
     }
 
 	//#endregion
 
 	//#endregion
 
-    return EventManager;
+    return ViewManager;
 });

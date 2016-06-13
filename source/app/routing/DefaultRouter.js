@@ -11,9 +11,9 @@ define(function (require) {
     var $ = require('jquery');
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
 
-    var RoutingTable = require('routing/RoutingTable');
+    var Route = require('routing/Route');
     var DefaultController = require('controllers/DefaultController');
 
 	//#endregion
@@ -46,7 +46,6 @@ define(function (require) {
 
         initialize: function ()
         {
-        	debugger;
         },
 
     	//#endregion
@@ -55,10 +54,8 @@ define(function (require) {
 
         processNavigationRequest: function(route, data)
         {
-        	debugger;
-        	var url = RoutingTable.getUrl(route, data);
+        	var url = Route.getUrl(route, data);
 
-			//Backbone.history.navigate(url,{ trigger:true, replace: true })
         	this.navigate(url, { trigger: true });
         },
 
@@ -68,11 +65,11 @@ define(function (require) {
     		{
     			this.controller = new ControllerType(this.options);
 
-    			for (var routeKey in RoutingTable)
+    			for (var routeKey in Route)
     			{
-    				if (RoutingTable.hasOwnProperty(routeKey))
+    				if (Route.hasOwnProperty(routeKey))
     				{
-    					var route = RoutingTable[routeKey];
+    					var route = Route[routeKey];
 
     					if (route)
     					{

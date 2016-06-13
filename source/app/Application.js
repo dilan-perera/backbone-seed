@@ -5,9 +5,9 @@ define(function (require) {
     var $ = require('jquery');
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
 
-    var RoutingTable = require('routing/RoutingTable');
+    var Route = require('routing/Route');
     var DefaultRouter = require('routing/DefaultRouter');
 
     var Application = Marionette.Application.extend({

@@ -33,9 +33,18 @@
     "requirejs-domready": "^2.0.1",
     "requirejs-text": "^2.0.15",
     "requirejs-i18n": "^2.0.6",
-    "bootstrap-material-design": "^0.5.10"
+    "bootstrap-material-design": "^0.5.10",
+    "select2-dist": "^4.0.3",
+    "select2-bootstrap3-css": "^1.4.6",
+    "bootstrap-material-datetimepicker": "^2.7.1",
+    "moment": "^2.13.0",
+    "moment-timezone": "^0.5.4",
+    "decimal.js": "^5.0.8",
+    "pdfjs-dist": "^1.5.294"
   },
   "resolutions": {
-    "backbone": ">=0.9.2"
+    "backbone": ">=0.9.2",
+    "bootstrap-material-design": "^0.5.10",
+    "jquery": ">=1.7"
   }
 }

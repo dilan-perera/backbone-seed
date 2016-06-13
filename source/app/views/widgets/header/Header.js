@@ -12,9 +12,12 @@ define(function (require)
     var $ = require('jquery');
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
+    var Radio = require('backbone.radio');
 
+    var Channel = require('messaging/Channel');
     var EventManager = require('views/EventManager');
+    var ViewManager = require('views/ViewManager');
 
 	//#endregion
 
@@ -23,7 +26,9 @@ define(function (require)
     	//#region Fields - Instance Member
 
 		el: '#header',
-    	_eventManager: null,
+		_eventManager: null,
+		_viewManager: null,
+		_appChannel: Backbone.Radio.channel(Channel.APPLICATION.name),
 
     	//#endregion
 
@@ -31,6 +36,7 @@ define(function (require)
 
     	ui:
 		{
+			'viewTitle': '#viewTitle',
 			'offcanvasToggleButton': '[data-toggle=offcanvas]',
 			'offcanvasRow': '.row-offcanvas'
     	},
@@ -55,6 +61,11 @@ define(function (require)
 
     	//#region Functions - Instance Member - (getters/setters)
 		
+    	_getViewTitle: function()
+    	{
+    		return this._viewManager.getUI('viewTitle');
+    	},
+
     	//#endregion
 
     	//#region Functions - Instance Member - (view lifecycle)
@@ -62,7 +73,10 @@ define(function (require)
     	initialize: function()
     	{
     		this._eventManager = new EventManager(this);
+    		this._viewManager = new ViewManager(this);
 			
+    		this._appChannel.reply(Channel.APPLICATION.Topics.TITLE_CHANGE.name, this._onTitleChangeRequested, this);
+
     		Marionette.View.prototype.initialize.call(this);
     	},
 
@@ -94,6 +108,33 @@ define(function (require)
     	_onOffCanvasMenuToggled: function(e)
     	{
 			this.ui.offcanvasRow.toggleClass('active');
+    	},
+
+    	_onTitleChangeRequested: function(request)
+    	{
+    		if (request)
+    		{
+    			if (request.useDistinctTitles)
+    			{
+    				if (request.title)
+    				{
+    					this._getViewTitle().text(request.title);
+					}
+
+    				if (request.windowTitle)
+    				{
+    					document.title = request.windowTitle;
+    				}
+    			}
+				else
+    			{
+    				if (request.title)
+    				{
+    					this._getViewTitle().text(request.title);
+    					document.title = request.title;
+					}
+    			}
+    		}
     	}
 
     	//#endregion

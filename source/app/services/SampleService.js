@@ -12,7 +12,7 @@ define(function (require)
     var exports = require('exports');
     var module = require('module');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
 
     var Service = require('services/Service');
 
@@ -46,6 +46,31 @@ define(function (require)
     	//#endregion
 
     	//#region Functions - Instance Member - (services)
+		
+    	getData: function(request)
+    	{
+    		var successCallback = $.proxy(this._onDataSaveSuccessful, this);
+    		var failureCallback = $.proxy(this._onDataSaveFailure, this);
+
+    		$.ajax({
+    			url: '/data/person.json',
+				method: 'GET',
+			}).done(successCallback).fail(failureCallback);			
+    	},
+
+    	_onDataRetrievalSuccessful: function(data, textStatus, jqXHR)
+    	{
+			this.triggerMethod('dataRetrievalSuccessful', data);
+    	},
+
+    	_onDataRetrievalFailure: function(jqXHR, textStatus, errorThrown)
+    	{
+    		var ex = null;
+
+			// TODO: get exception data
+
+    		this.triggerMethod('dataRetrievalFailed', ex);
+    	},
 
     	saveData: function(request)
     	{

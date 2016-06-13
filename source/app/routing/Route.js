@@ -13,7 +13,7 @@ define(function (require)
 
 	//#endregion
 		
-    var RoutingTable = 
+    var Route = 
     {
 
     	//#region Enumeration values
@@ -57,19 +57,21 @@ define(function (require)
 
     };
 
-    RoutingTable.fromName = function(name)
+    Route.fromName = function(name)
     {
     	var route = null;
 
-    	if (RoutingTable.hasOwnProperty(name))
+    	var normalizedKey = name.toUpperCase();
+
+    	if (Route.hasOwnProperty(normalizedKey))
     	{
-    		route = RoutingTable[name];
+    		route = Route[normalizedKey];
     	}
 
     	return route;
     }
 
-    RoutingTable.getUrl = function (route, data)
+    Route.getUrl = function (route, data)
     {
     	var url = '';
 
@@ -96,7 +98,7 @@ define(function (require)
     	return url;
     }
 
-    RoutingTable = Object.freeze(RoutingTable);
+    Route = Object.freeze(Route);
 	
-    return RoutingTable;
+    return Route;
 });

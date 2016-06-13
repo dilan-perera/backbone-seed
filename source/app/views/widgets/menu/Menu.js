@@ -12,12 +12,15 @@ define(function (require)
     var $ = require('jquery');
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
+    var Radio = require('backbone.radio');
 
     var ViewTemplate = require('text!views/widgets/menu/main.tmpl');
-    var EventManager = require('views/EventManager');
-    var RoutingTable = require('routing/RoutingTable');
+    var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
+    var Channel = require('messaging/Channel');
+    var EventManager = require('views/EventManager');
+    var ViewManager = require('views/ViewManager');
 
 	//#endregion
 
@@ -26,7 +29,9 @@ define(function (require)
     	//#region Fields - Instance Member
 
 		_viewTemplate: ViewTemplate,
-    	_eventManager: null,
+		_eventManager: null,
+		_viewManager: null,
+    	_appChannel: Backbone.Radio.channel(Channel.APPLICATION.name),
 
     	//#endregion
 
@@ -57,6 +62,11 @@ define(function (require)
 
     	//#region Functions - Instance Member - (getters/setters)
 		
+    	_getItems: function()
+    	{
+    		return this._viewManager.getUI('items');
+    	},
+
     	//#endregion
 
     	//#region Functions - Instance Member - (view lifecycle)
@@ -64,6 +74,9 @@ define(function (require)
     	initialize: function()
     	{
     		this._eventManager = new EventManager(this);
+    		this._viewManager = new ViewManager(this);
+
+    		this._appChannel.reply(Channel.APPLICATION.Topics.VIEW_CHANGED.name, this._onViewChanged, this);
 
     		Marionette.View.prototype.initialize.call(this);
     	},
@@ -71,6 +84,8 @@ define(function (require)
     	render: function ()
     	{
 			this.$el.html(this.template());
+
+			this._setupMenuSelection(Menu.DEFAULT_ROUTE);
 
     		Marionette.View.prototype.render.call(this);
 
@@ -94,21 +109,32 @@ define(function (require)
     	//#region Functions - Instance Member - (callbacks)
 
     	//#region Functions - Instance Member - (callbacks) - (UI event handlers)
-
+		
     	_onItemClicked: function (e)
     	{
     		e.preventDefault();
 
     		var element = $(e.currentTarget);
-    		var routeName = element.attr('data-route');
-    		var route = RoutingTable.fromName(routeName);
+    		var routeName = element.data('route');
+    		var route = Route.fromName(routeName);
 			
-    		NavigationManager.navigate(route);
-    	}
+    		this._navigate(route);
+    	},
 
     	//#endregion
 
     	//#region Functions - Instance Member - (callbacks) - (other)
+
+    	_onViewChanged: function(data)
+    	{
+    		if (data)
+    		{
+    			if (data.route)
+    			{
+    				this._onNavigationComplete(data.route);
+    			}
+    		}
+    	},
 
     	//#endregion
 
@@ -117,6 +143,49 @@ define(function (require)
     	//#region Functions - Instance Member - (helpers)
 
     	//#region Functions - Instance Member - (helpers) - (view management)
+		
+    	_navigate: function(route)
+    	{
+    		NavigationManager.navigate(route);
+    	},
+
+    	_onNavigationComplete: function(route)
+    	{
+    		this._setupMenuSelection(route);
+    	},
+
+    	_setupMenuSelection: function(route)
+    	{
+    		this._clearMenuSelection();
+    		this._highlightSelection(route);
+    	},
+
+    	_clearMenuSelection: function()
+    	{
+    		var items = this._getItems();
+
+    		$.each(items, function (index, item)
+    		{
+    			var itemElement = $(item);
+
+				itemElement.parent().removeClass(Menu.SELECTED_STYLE_NAME);
+    		});
+    	},
+
+    	_highlightSelection: function(route)
+    	{
+    		var items = this._getItems();
+
+    		$.each(items, function (index, item)
+    		{
+    			var itemElement = $(item);
+
+    			if (itemElement.data('route') == route.name)
+    			{
+    				itemElement.parent().addClass(Menu.SELECTED_STYLE_NAME);
+    			}
+    		});
+    	}
 
     	//#endregion
 		
@@ -140,6 +209,9 @@ define(function (require)
 	{
 		
     	//#region Constants - Static Member
+
+		DEFAULT_ROUTE: Route.DASHBOARD,
+		SELECTED_STYLE_NAME: 'active'
 
 		//#endregion
 

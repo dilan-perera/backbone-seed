@@ -13,8 +13,7 @@ define(function (require) {
     var $ = require('jquery');
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
-    var Stickit = require('backbone-stickit');
+    var Marionette = require('backbone.marionette');
 
 	//#endregion
 

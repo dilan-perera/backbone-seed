@@ -247,3 +247,14 @@ body
 	overflow: hidden;
 	display: none;
 }
+
+#contentRegion
+{
+	background-color: #FFFFFF;
+	margin-top: 10px;
+}
+
+#sidebarRegion
+{
+	margin-top: 10px;
+}

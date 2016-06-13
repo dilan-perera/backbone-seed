@@ -3,7 +3,7 @@ define(function (require)
 {
 	//#region Browser Directives
 
-    'use strict';
+	'use strict';
 
 	//#endregion
 
@@ -12,11 +12,15 @@ define(function (require)
     var $ = require('jquery');
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
+	var Radio = require('backbone.radio');
+	var Stickit = require('backbone.stickit');
 
     var ViewTemplate = require('text!views/pages/formview/main.tmpl');
-    var EventManager = require('views/EventManager');
+    var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
+    var Channel = require('messaging/Channel');
+    var EventManager = require('views/EventManager');
     var SampleService = require('services/SampleService');
 
 	//#endregion
@@ -27,6 +31,7 @@ define(function (require)
 
     	_viewTemplate: ViewTemplate,
     	_eventManager: null,
+		_appChannel: Backbone.Radio.channel(Channel.APPLICATION.name),
     	_sampleService: null,
 
     	//#endregion
@@ -53,11 +58,14 @@ define(function (require)
     	{
     		this._sampleService = new SampleService();
 
-    		this._sampleService.on('dataSaveSuccessful', $.proxy(this._onDataSaveSuccess, this));
-    		this._sampleService.on('dataSaveFailed', $.proxy(this._onDataSaveFailure, this));
+    		this._setupServiceListeners();
 
 			Marionette.View.apply(this, arguments);
     	},
+
+    	//#endregion
+
+    	//#region Functions - Instance Member - (getters/setters)
 
     	//#endregion
 
@@ -74,7 +82,12 @@ define(function (require)
     	{
 			this.$el.html(this.template());
 
-    		Marionette.View.prototype.render.call(this);
+			this._setTitle();
+			this._notifyNavigationCompletion();
+
+			Marionette.View.prototype.render.call(this);
+
+			this._attemptDataLoad();
 
     		return this;
     	},
@@ -100,13 +113,24 @@ define(function (require)
 
     	_onAcceptClicked: function(e)
     	{
-    		debugger;
     		this._attemptDataSave();
     	},
 
     	//#endregion
 
     	//#region Functions - Instance Member - (callbacks) - (services)
+
+    	_onDataRetrievalSuccess: function(data)
+    	{
+    		// TODO: show success message
+     		alert('Success!');
+   		},
+
+    	_onDataRetrievalFailure: function(ex)
+    	{
+    		// TODO: show error message
+    		alert('Error!');
+    	},
 
     	_onDataSaveSuccess: function(data)
     	{
@@ -132,20 +156,46 @@ define(function (require)
 
     	//#region Functions - Instance Member - (helpers) - (view management)
 
+    	_setTitle: function()
+    	{
+    		this._appChannel.request(Channel.APPLICATION.Topics.TITLE_CHANGE.name, { title: 'Data Form' });
+    	},
+
+    	_notifyNavigationCompletion: function()
+    	{
+    		this._appChannel.request(Channel.APPLICATION.Topics.VIEW_CHANGED.name, { route: Route.FORM });
+    	},
+
     	//#endregion
 		
     	//#region Functions - Instance Member - (helpers) - (data binding)
 
     	//#endregion
 		
-    	//#region Functions - Instance Member - (helpers) - (service invocations)
+    	//#region Functions - Instance Member - (helpers) - (service operations)
 
-    	_attemptDataSave: function()
+    	_setupServiceListeners: function()
+    	{
+    		this._sampleService.on('dataRetrievalSuccessful', $.proxy(this._onDataRetrievalSuccess, this));
+    		this._sampleService.on('dataRetrievalFailed', $.proxy(this._onDataRetrievalFailure, this));
+    		this._sampleService.on('dataSaveSuccessful', $.proxy(this._onDataSaveSuccess, this));
+    		this._sampleService.on('dataSaveFailed', $.proxy(this._onDataSaveFailure, this));
+    	},
+
+    	_attemptDataLoad: function()
     	{
     		var request = {};
 
+    		this._sampleService.getData(request);
+    	},
+
+    	_attemptDataSave: function()
+    	{
+
+    		var request = {};
+
     		this._sampleService.saveData(request);
-		}
+    	},
 
     	//#endregion
 		

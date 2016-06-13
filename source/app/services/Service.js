@@ -12,7 +12,7 @@ define(function (require)
     var exports = require('exports');
     var module = require('module');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
 
 	//#endregion
 

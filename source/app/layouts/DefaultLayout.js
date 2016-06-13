@@ -11,9 +11,9 @@ define(function (require) {
     var $ = require('jquery');
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
 
-    var RoutingTable = require('routing/RoutingTable');
+    var Route = require('routing/Route');
     var Header = require('views/widgets/header/Header');
     var Content = require('views/widgets/content/Content');
     var Footer = require('views/widgets/footer/Footer');
@@ -85,7 +85,7 @@ define(function (require) {
         onShowDefault: function (initialData)
         {
         	this._showView(
-				RoutingTable.DASHBOARD.viewPath,
+				Route.DASHBOARD.viewPath,
 				initialData,
 				'views/widgets/menu/Menu',
 				initialData);
@@ -94,7 +94,7 @@ define(function (require) {
         onShowDashboard: function(initialData)
         {
         	this._showView(
-				RoutingTable.DASHBOARD.viewPath,
+				Route.DASHBOARD.viewPath,
 				initialData,
 				'views/widgets/menu/Menu',
 				initialData);
@@ -103,7 +103,7 @@ define(function (require) {
         onShowForm: function(initialData)
         {
         	this._showView(
-				RoutingTable.FORM.viewPath,
+				Route.FORM.viewPath,
 				initialData,
 				'views/widgets/menu/Menu',
 				initialData);
@@ -115,7 +115,6 @@ define(function (require) {
 
     	_showView: function(contentViewPath, contentOptions, sidebarViewPath, sidebarOptions)
     	{
-    		debugger;
     		var thisScope = this;
 
     		var regionViewLoader = function (region, View, options)

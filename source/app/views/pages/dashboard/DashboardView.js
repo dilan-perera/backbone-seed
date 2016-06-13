@@ -12,11 +12,13 @@ define(function (require)
     var $ = require('jquery');
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
 
     var ViewTemplate = require('text!views/pages/dashboard/main.tmpl');
-    var EventManager = require('views/EventManager');
+    var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
+    var Channel = require('messaging/Channel');
+    var EventManager = require('views/EventManager');
 
 	//#endregion
 
@@ -26,6 +28,7 @@ define(function (require)
 
 		_viewTemplate: ViewTemplate,
     	_eventManager: null,
+		_appChannel: Backbone.Radio.channel(Channel.APPLICATION.name),
 
     	//#endregion
 
@@ -64,6 +67,9 @@ define(function (require)
     	{
     		this.$el.html(this.template());
 
+			this._setTitle();
+			this._notifyNavigationCompletion();
+
     		Marionette.View.prototype.render.call(this);
 
     		return this;
@@ -79,7 +85,7 @@ define(function (require)
     	template: function()
     	{
     		return this._viewTemplate;
-		}
+		},
 
     	//#endregion
 
@@ -98,6 +104,16 @@ define(function (require)
     	//#region Functions - Instance Member - (helpers)
 
     	//#region Functions - Instance Member - (helpers) - (view management)
+		
+    	_setTitle: function()
+    	{
+    		this._appChannel.request(Channel.APPLICATION.Topics.TITLE_CHANGE.name, { title: 'Dashboard' });
+    	},
+
+    	_notifyNavigationCompletion: function()
+    	{
+    		this._appChannel.request(Channel.APPLICATION.Topics.VIEW_CHANGED.name, { route: Route.DASHBOARD });
+    	}
 
     	//#endregion
 		

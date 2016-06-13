@@ -12,7 +12,7 @@ define(function (require)
     var $ = require('jquery');
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var Marionette = require('backbone-marionette');
+    var Marionette = require('backbone.marionette');
 
     var ViewTemplate = require('views/tabularview/main.tmpl');
     var EventManager = require('views/EventManager');

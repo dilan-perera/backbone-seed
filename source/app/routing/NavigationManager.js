@@ -9,7 +9,7 @@ define(function (require)
 
 	//#region Imports
 
-    var RoutingTable = require('routing/RoutingTable');
+    var Route = require('routing/Route');
 
 	//#endregion
 		
@@ -29,7 +29,7 @@ define(function (require)
 
     NavigationManager.toDashboard = function()
     {
-    	NavigationManager.navigate(RoutingTable.DASHBOARD);
+    	NavigationManager.navigate(Route.DASHBOARD);
     }
 
     NavigationManager.toForm = function(id)
@@ -38,12 +38,12 @@ define(function (require)
     		id: id
     	};
 
-    	NavigationManager.navigate(RoutingTable.FORM, data);
+    	NavigationManager.navigate(Route.FORM, data);
     }
 
     NavigationManager.toTabular = function()
     {
-    	NavigationManager.navigate(RoutingTable.TABULAR);
+    	NavigationManager.navigate(Route.TABULAR);
     }
 
     //#endregion
@@ -61,7 +61,7 @@ define(function (require)
 		}
 		else
 		{
-			var url = RoutingTable.getUrl(route, data);
+			var url = Route.getUrl(route, data);
 
 			document.location = url;
 		}

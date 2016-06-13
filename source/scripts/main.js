@@ -9,7 +9,8 @@ require(['config'], function () {
         'jquery',
         'underscore',
         'backbone',
-        'backbone-marionette',
+        'backbone.marionette',
+        'backbone.radio-shim',
         'bootstrap',
         'Application'
     ], function (
@@ -20,6 +21,7 @@ require(['config'], function () {
         _,
         Backbone,
         Marionette,
+        Radio,
         Bootstrap,
         Application)
     {
