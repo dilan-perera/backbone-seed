@@ -13,9 +13,33 @@ define(function (require)
     var _ = require('underscore');
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
-    var BSValidator = require('bootstrap-validator');
+    var Validation = require('backbone-validation');
 
 	//#endregion
+
+	//http://jsfiddle.net/thedersen/udXL5/
+	//http://jsfiddle.net/thedersen/c3kK2/
+
+	// Extend the callbacks to work with Bootstrap, as used in this example
+	// See: http://thedersen.com/projects/backbone-validation/#configuration/callbacks
+    _.extend(Backbone.Validation.callbacks, {
+    	valid: function (view, attr, selector)
+    	{
+    		var $el = view.$('[name=' + attr + ']'),
+				$group = $el.closest('.form-group');
+
+    		$group.removeClass('has-error');
+    		$group.find('.help-block').html('').addClass('hidden');
+    	},
+    	invalid: function (view, attr, error, selector)
+    	{
+    		var $el = view.$('[name=' + attr + ']'),
+				$group = $el.closest('.form-group');
+
+    		$group.addClass('has-error');
+    		$group.find('.help-block').html(error).removeClass('hidden');
+    	}
+    });
 
     var ValidationBehavior = Marionette.Behavior.extend(
 	{

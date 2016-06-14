@@ -60,31 +60,51 @@ define(function (require)
 
     	//#endregion
 
-		//#region Functions - Instance Member - (behavior methods)
+		//#region Functions - Instance Member - (callbacks)
 
 		onNotifySuccess: function (message, title)
 		{
-			Notification.showSuccess(message, title);
+			this._notifySuccess(message, title);
 		},
 
 		onNotifyInformation: function (message, title)
 		{
-			Notification.showInformation(message, title);
+			this._notifyInformation(message, title);
 		},
 
 		onNotifyWarning: function (message, title)
 		{
-			Notification.showWarning(message, title);
+			this._notifyWarning(message, title);
 		},
 
 		onNotifyError: function (message, title)
 		{
-			Notification.showError(message, title);
-		}
+			this._notifyError(message, title);
+		},
 
     	//#endregion
 		
     	//#region Functions - Instance Member - (helpers)
+
+		_notifySuccess: function (message, title)
+		{
+			Notification.showSuccess(message, title);
+		},
+
+		_notifyInformation: function (message, title)
+		{
+			Notification.showInformation(message, title);
+		},
+
+		_notifyWarning: function (message, title)
+		{
+			Notification.showWarning(message, title);
+		},
+
+		_notifyError: function (message, title)
+		{
+			Notification.showError(message, title);
+		}
 
     	//#endregion
 

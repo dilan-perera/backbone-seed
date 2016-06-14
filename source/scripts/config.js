@@ -1,4 +1,5 @@
-﻿'use strict';
+﻿
+'use strict';
 
 require.config({
     baseUrl: '../app',
@@ -15,9 +16,9 @@ require.config({
         'backbone.radio': '../lib/backbone.radio/build/backbone.radio.min',
         'backbone.radio-shim': '../scripts/radio.shim',
         'backbone.stickit': '../lib/backbone.stickit/backbone.stickit',
+        'backbone-validation': '../lib/backbone-validation/dist/backbone-validation-amd-min',
         'bootstrap': '../lib/bootstrap/dist/js/bootstrap.min',
         'bootstrap-material-design': '../lib/bootstrap-material-design/dist/js/material.min',
-        'bootstrap-validator': '../lib/bootstrap-validator/dist/validator.min',
         'datatables.net': '../lib/datatables-net/js/jquery.dataTables.min',
         'datatables.net-bs': '../lib/datatables.net-bs/js/dataTables.bootstrap.min',
         'datatables.net-responsive': '../lib/datatables.net-responsive/js/dataTables.responsive.min',

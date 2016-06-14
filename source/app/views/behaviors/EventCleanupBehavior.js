@@ -63,6 +63,15 @@ define(function (require)
 
     	onDestroy: function()
     	{
+    		this._performCleanup();
+    	},
+
+    	//#endregion
+		
+    	//#region Functions - Instance Member - (helpers)
+
+		_performCleanup: function()
+		{
     		if (this.view)
     		{
     			if (this.view.model)
@@ -80,11 +89,7 @@ define(function (require)
 
     			this.view.$el.empty();
     		}
-    	}
-
-    	//#endregion
-		
-    	//#region Functions - Instance Member - (helpers)
+		}
 
     	//#endregion
 

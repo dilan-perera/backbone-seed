@@ -60,10 +60,29 @@ define(function (require)
 
     	//#endregion
 
-		//#region Functions - Instance Member - (behavior methods)
+		//#region Functions - Instance Member - (callbacks)
 
     	onDataBind: function()
     	{
+    		this._connectDataBinder();
+    	},
+
+    	onDataUnbind: function()
+    	{
+    		this._disconnectDataBinder();
+    	},
+
+		onDestroy: function()
+		{
+			this.onDataUnbind();
+		},
+
+    	//#endregion
+		
+		//#region Functions - Instance Member - (helpers)
+
+		_connectDataBinder: function()
+		{
     		if (this.view)
     		{
     			if (this.view.stickit)
@@ -71,10 +90,10 @@ define(function (require)
     				this.view.stickit();
     			}
     		}
-    	},
+		},
 
-    	onDataUnbind: function()
-    	{
+		_disconnectDataBinder: function()
+		{
     		if (this.view)
     		{
     			if (this.view.unstickit)
@@ -82,16 +101,7 @@ define(function (require)
     				this.view.unstickit();
     			}
     		}
-    	},
-
-		onDestroy: function()
-		{
-			this.onDataUnbind();
 		}
-
-    	//#endregion
-		
-    	//#region Functions - Instance Member - (helpers)
 
     	//#endregion
 

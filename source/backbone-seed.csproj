@@ -74,6 +74,7 @@
     <Content Include="app\views\_TemplateView.js" />
     <Content Include="app\views\pages\dashboard\DashboardView.js" />
     <Content Include="lib\backbone-nested-model\backbone-nested.js" />
+    <Content Include="lib\backbone-validation\dist\backbone-validation-amd-min.js" />
     <Content Include="lib\backbone.babysitter\lib\backbone.babysitter.min.js" />
     <Content Include="lib\backbone.localStorage\backbone.localStorage-min.js" />
     <Content Include="lib\backbone.marionette\lib\backbone.marionette.min.js" />
@@ -87,7 +88,6 @@
     <Content Include="lib\bootstrap-material-design\dist\css\ripples.min.css" />
     <Content Include="lib\bootstrap-material-design\dist\js\material.min.js" />
     <Content Include="lib\bootstrap-material-design\dist\js\ripples.min.js" />
-    <Content Include="lib\bootstrap-validator\dist\validator.min.js" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="lib\bootstrap\dist\css\bootstrap.min.css" />
     <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
