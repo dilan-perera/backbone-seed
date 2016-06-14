@@ -63,6 +63,7 @@
     <Content Include="app\views\behaviors\EventCleaner.js" />
     <Content Include="app\views\behaviors\Validator.js" />
     <None Include="app\views\pages\formview\main.tmpl" />
+    <Content Include="app\views\ViewEventCategory.js" />
     <Content Include="app\views\pages\formview\FormView.js" />
     <Content Include="app\views\pages\tabularview\TabularView.js" />
     <Content Include="app\views\widgets\content\Content.js" />
@@ -70,7 +71,7 @@
     <Content Include="app\views\widgets\header\Header.js" />
     <Content Include="app\views\widgets\menu\Menu.js" />
     <Content Include="app\views\widgets\notification\Notification.js" />
-    <Content Include="app\_TemplateView.js" />
+    <Content Include="app\views\_TemplateView.js" />
     <Content Include="app\views\pages\dashboard\DashboardView.js" />
     <Content Include="lib\backbone-nested-model\backbone-nested.js" />
     <Content Include="lib\backbone.babysitter\lib\backbone.babysitter.min.js" />

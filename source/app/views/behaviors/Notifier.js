@@ -64,6 +64,7 @@ define(function (require)
 
 		onNotifySuccess: function (message, title)
 		{
+			debugger;
 			Notification.showSuccess(message, title);
 		},
 

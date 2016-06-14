@@ -19,6 +19,7 @@ define(function (require)
     var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
     var Channel = require('messaging/Channel');
+    var ViewEventCategory = require('views/ViewEventCategory');
     var DataBinder = require('views/behaviors/DataBinder');
     var EventCleaner = require('views/behaviors/EventCleaner');
     var Notifier = require('views/behaviors/Notifier');
@@ -139,26 +140,26 @@ define(function (require)
 
     		this.model = dataModel;
 
-    		this.triggerMethod("data:bind");
-    		this.triggerMethod("notify:success", 'Success!');
+    		this.triggerMethod(ViewEventCategory.DATABINDING.Events.BIND.name);
+    		this.triggerMethod(ViewEventCategory.NOTIFY.Events.SUCCESS.name, 'Success!');
     	},
 
     	_onDataRetrievalFailure: function(ex)
     	{
     		// TODO: show error message
-    		this.triggerMethod("notify:error", 'Fail!');
+    		this.triggerMethod(ViewEventCategory.NOTIFY.Events.ERROR.name, 'Fail!');
     	},
 
     	_onDataSaveSuccess: function(data)
     	{
     		// TODO: show success message
-    		this.triggerMethod("notify:success", 'Success!');
+    		this.triggerMethod(ViewEventCategory.NOTIFY.Events.SUCCESS.name, 'Success!');
     	},
 
     	_onDataSaveFailure: function(ex)
     	{
     		// TODO: show error message
-    		this.triggerMethod("notify:error", 'Fail!');
+    		this.triggerMethod(ViewEventCategory.NOTIFY.Events.ERROR.name, 'Fail!');
     	},
 
     	//#endregion
