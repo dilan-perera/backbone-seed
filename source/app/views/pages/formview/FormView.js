@@ -209,8 +209,6 @@ define(function (require)
 
     	_attemptDataSave: function()
     	{
-    		debugger;
-
     		var request = {};
 
     		this._sampleService.saveData(request);
