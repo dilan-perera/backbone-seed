@@ -14,13 +14,15 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
 	var Radio = require('backbone.radio');
-	var Stickit = require('backbone.stickit');
 
     var ViewTemplate = require('text!views/pages/formview/main.tmpl');
     var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
     var Channel = require('messaging/Channel');
-    var EventManager = require('views/EventManager');
+    var DataBinder = require('views/behaviors/DataBinder');
+    var EventCleaner = require('views/behaviors/EventCleaner');
+    var Notifier = require('views/behaviors/Notifier');
+    var Validator = require('views/behaviors/Validator');
     var SampleService = require('services/SampleService');
 
 	//#endregion
@@ -30,7 +32,6 @@ define(function (require)
     	//#region Fields - Instance Member
 
     	_viewTemplate: ViewTemplate,
-    	_eventManager: null,
 		_appChannel: Backbone.Radio.channel(Channel.APPLICATION.name),
     	_sampleService: null,
 
@@ -40,12 +41,28 @@ define(function (require)
 
     	ui:
 		{
+			'inputName': '#inputName',
 			'acceptFormActionButton': '#acceptFormActionButton'
     	},
 
     	events:
 		{
 			'click @ui.acceptFormActionButton': '_onAcceptClicked'
+		},
+
+    	bindings:
+		{
+			'#inputName': 'name',
+			'#inputEmail': 'email',
+			'#inputAge': 'age'
+		},
+
+    	behaviors:
+		{
+			Notifier: {},
+			DataBinder: {},
+			Validator: {},
+			EventCleaner: {}
 		},
 
 		//#endregion
@@ -73,14 +90,13 @@ define(function (require)
 
     	initialize: function()
     	{
-    		this._eventManager = new EventManager(this);
-
     		Marionette.View.prototype.initialize.call(this);
     	},
 
     	render: function ()
     	{
-			this.$el.html(this.template());
+    		this.$el.html(this.template());
+    		this.bindUIElements();
 
 			this._setTitle();
 			this._notifyNavigationCompletion();
@@ -92,12 +108,9 @@ define(function (require)
     		return this;
     	},
 
-    	close: function ()
+    	onDestroy: function ()
     	{
-    		Marionette.View.prototype.destroy.call(this);
-
     		this._sampleService.destroy();
-    		this._eventManager.destroy();
     	},
 
     	template: function()
@@ -122,26 +135,30 @@ define(function (require)
 
     	_onDataRetrievalSuccess: function(data)
     	{
-    		// TODO: show success message
-     		alert('Success!');
-   		},
+			var dataModel = new Backbone.Model(data);
+
+    		this.model = dataModel;
+
+    		this.triggerMethod("data:bind");
+    		this.triggerMethod("notify:success", 'Success!');
+    	},
 
     	_onDataRetrievalFailure: function(ex)
     	{
     		// TODO: show error message
-    		alert('Error!');
+    		this.triggerMethod("notify:error", 'Fail!');
     	},
 
     	_onDataSaveSuccess: function(data)
     	{
     		// TODO: show success message
-     		alert('Success!');
-   		},
+    		this.triggerMethod("notify:success", 'Success!');
+    	},
 
     	_onDataSaveFailure: function(ex)
     	{
     		// TODO: show error message
-    		alert('Error!');
+    		this.triggerMethod("notify:error", 'Fail!');
     	},
 
     	//#endregion
@@ -191,6 +208,7 @@ define(function (require)
 
     	_attemptDataSave: function()
     	{
+    		debugger;
 
     		var request = {};
 

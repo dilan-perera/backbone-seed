@@ -17,10 +17,12 @@ require.config({
         'backbone.stickit': '../lib/backbone.stickit/backbone.stickit',
         'bootstrap': '../lib/bootstrap/dist/js/bootstrap.min',
         'bootstrap-material-design': '../lib/bootstrap-material-design/dist/js/material.min',
+        'bootstrap-validator': '../lib/bootstrap-validator/dist/validator.min',
         'datatables.net': '../lib/datatables-net/js/jquery.dataTables.min',
         'datatables.net-bs': '../lib/datatables.net-bs/js/dataTables.bootstrap.min',
         'datatables.net-responsive': '../lib/datatables.net-responsive/js/dataTables.responsive.min',
         'datatables.net-responsive-bs': '../lib/datatables.net-responsive-bs/js/responsive.bootstrap',
+        'toastr': '../lib/toastr/toastr.min',
         'jquery': '../lib/jquery/dist/jquery.min'
     },
 

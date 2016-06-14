@@ -15,7 +15,6 @@ define(function (require)
     var Marionette = require('backbone.marionette');
 
     var ViewTemplate = require('views/tabularview/main.tmpl');
-    var EventManager = require('views/EventManager');
     var NavigationManager = require('routing/NavigationManager');
 
 	//#endregion
@@ -25,7 +24,6 @@ define(function (require)
     	//#region Fields - Instance Member
 
 		_viewTemplate: ViewTemplate,
-    	_eventManager: null,
 
     	//#endregion
 
@@ -55,8 +53,6 @@ define(function (require)
 
     	initialize: function()
     	{
-    		this._eventManager = new EventManager(this);
-
     		Marionette.View.prototype.initialize.call(this);
     	},
 
@@ -65,13 +61,6 @@ define(function (require)
     		Marionette.View.prototype.render.call(this);
 
     		return this;
-    	},
-
-    	close: function ()
-    	{
-    		Marionette.View.prototype.destroy.call(this);
-
-    		this._eventManager.destroy();
     	},
 
     	template: function()

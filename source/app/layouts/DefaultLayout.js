@@ -148,7 +148,7 @@ define(function (require) {
 
 						if (thisScope._contentView)
 						{
-							thisScope._contentView.close();
+							//thisScope._contentView.close();
 						}
 
 						thisScope._contentView = regionViewLoader(contentRegion, ContentView, contentOptions);

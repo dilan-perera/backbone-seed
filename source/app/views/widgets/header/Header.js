@@ -16,8 +16,6 @@ define(function (require)
     var Radio = require('backbone.radio');
 
     var Channel = require('messaging/Channel');
-    var EventManager = require('views/EventManager');
-    var ViewManager = require('views/ViewManager');
 
 	//#endregion
 
@@ -26,8 +24,6 @@ define(function (require)
     	//#region Fields - Instance Member
 
 		el: '#header',
-		_eventManager: null,
-		_viewManager: null,
 		_appChannel: Backbone.Radio.channel(Channel.APPLICATION.name),
 
     	//#endregion
@@ -60,11 +56,6 @@ define(function (require)
     	//#endregion
 
     	//#region Functions - Instance Member - (getters/setters)
-		
-    	_getViewTitle: function()
-    	{
-    		return this._viewManager.getUI('viewTitle');
-    	},
 
     	//#endregion
 
@@ -72,10 +63,9 @@ define(function (require)
 
     	initialize: function()
     	{
-    		this._eventManager = new EventManager(this);
-    		this._viewManager = new ViewManager(this);
-			
     		this._appChannel.reply(Channel.APPLICATION.Topics.TITLE_CHANGE.name, this._onTitleChangeRequested, this);
+
+    		this.render();
 
     		Marionette.View.prototype.initialize.call(this);
     	},
@@ -84,14 +74,9 @@ define(function (require)
     	{
     		Marionette.View.prototype.render.call(this);
 
+    		this.bindUIElements();
+
     		return this;
-    	},
-
-    	close: function ()
-    	{
-    		Marionette.View.prototype.destroy.call(this);
-
-    		this._eventManager.destroy();
     	},
 
     	template: function()
@@ -118,7 +103,7 @@ define(function (require)
     			{
     				if (request.title)
     				{
-    					this._getViewTitle().text(request.title);
+    					this.ui.viewTitle.text(request.title);
 					}
 
     				if (request.windowTitle)
@@ -130,7 +115,7 @@ define(function (require)
     			{
     				if (request.title)
     				{
-    					this._getViewTitle().text(request.title);
+    					this.ui.viewTitle.text(request.title);
     					document.title = request.title;
 					}
     			}

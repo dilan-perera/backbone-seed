@@ -49,8 +49,8 @@ define(function (require)
 		
     	getData: function(request)
     	{
-    		var successCallback = $.proxy(this._onDataSaveSuccessful, this);
-    		var failureCallback = $.proxy(this._onDataSaveFailure, this);
+    		var successCallback = $.proxy(this._onDataRetrievalSuccessful, this);
+    		var failureCallback = $.proxy(this._onDataRetrievalFailure, this);
 
     		$.ajax({
     			url: '/data/person.json',

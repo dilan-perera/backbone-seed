@@ -58,8 +58,10 @@
     <Content Include="app\services\SampleService.js" />
     <Content Include="app\services\Service.js" />
     <Content Include="app\routing\NavigationManager.js" />
-    <Content Include="app\views\ViewManager.js" />
-    <Content Include="app\views\EventManager.js" />
+    <Content Include="app\views\behaviors\Notifier.js" />
+    <Content Include="app\views\behaviors\DataBinder.js" />
+    <Content Include="app\views\behaviors\EventCleaner.js" />
+    <Content Include="app\views\behaviors\Validator.js" />
     <None Include="app\views\pages\formview\main.tmpl" />
     <Content Include="app\views\pages\formview\FormView.js" />
     <Content Include="app\views\pages\tabularview\TabularView.js" />
@@ -67,6 +69,7 @@
     <Content Include="app\views\widgets\footer\Footer.js" />
     <Content Include="app\views\widgets\header\Header.js" />
     <Content Include="app\views\widgets\menu\Menu.js" />
+    <Content Include="app\views\widgets\notification\Notification.js" />
     <Content Include="app\_TemplateView.js" />
     <Content Include="app\views\pages\dashboard\DashboardView.js" />
     <Content Include="lib\backbone-nested-model\backbone-nested.js" />
@@ -83,6 +86,7 @@
     <Content Include="lib\bootstrap-material-design\dist\css\ripples.min.css" />
     <Content Include="lib\bootstrap-material-design\dist\js\material.min.js" />
     <Content Include="lib\bootstrap-material-design\dist\js\ripples.min.js" />
+    <Content Include="lib\bootstrap-validator\dist\validator.min.js" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="lib\bootstrap\dist\css\bootstrap.min.css" />
     <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
@@ -233,6 +237,8 @@
     <Content Include="lib\select2-bootstrap3-css\select2-bootstrap.min.css" />
     <Content Include="lib\select2-dist\dist\css\select2.min.css" />
     <Content Include="lib\select2-dist\dist\js\select2.full.min.js" />
+    <Content Include="lib\toastr\toastr.min.css" />
+    <Content Include="lib\toastr\toastr.min.js" />
     <Content Include="lib\underscore\underscore-min.js" />
     <Content Include="styles\structural.css" />
     <Content Include="styles\themes\default\aesthetic.css" />

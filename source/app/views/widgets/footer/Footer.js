@@ -14,8 +14,6 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
 
-    var EventManager = require('views/EventManager');
-
 	//#endregion
 
     var Footer = Marionette.View.extend({
@@ -23,7 +21,6 @@ define(function (require)
     	//#region Fields - Instance Member
 
 		el: '#footer',
-    	_eventManager: null,
 
     	//#endregion
 
@@ -44,7 +41,6 @@ define(function (require)
 
     	constructor: function()
     	{
-
 			Marionette.View.apply(this, arguments);
     	},
 
@@ -54,23 +50,18 @@ define(function (require)
 
     	initialize: function()
     	{
-    		this._eventManager = new EventManager(this);
-
     		Marionette.View.prototype.initialize.call(this);
+
+    		this.render();
     	},
 
     	render: function ()
     	{
     		Marionette.View.prototype.render.call(this);
 
+    		this.bindUIElements();
+
     		return this;
-    	},
-
-    	close: function ()
-    	{
-    		Marionette.View.prototype.destroy.call(this);
-
-    		this._eventManager.destroy();
     	},
 
     	template: function()

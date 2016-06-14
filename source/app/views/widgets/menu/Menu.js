@@ -19,8 +19,6 @@ define(function (require)
     var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
     var Channel = require('messaging/Channel');
-    var EventManager = require('views/EventManager');
-    var ViewManager = require('views/ViewManager');
 
 	//#endregion
 
@@ -29,8 +27,6 @@ define(function (require)
     	//#region Fields - Instance Member
 
 		_viewTemplate: ViewTemplate,
-		_eventManager: null,
-		_viewManager: null,
     	_appChannel: Backbone.Radio.channel(Channel.APPLICATION.name),
 
     	//#endregion
@@ -62,20 +58,12 @@ define(function (require)
 
     	//#region Functions - Instance Member - (getters/setters)
 		
-    	_getItems: function()
-    	{
-    		return this._viewManager.getUI('items');
-    	},
-
     	//#endregion
 
     	//#region Functions - Instance Member - (view lifecycle)
 
     	initialize: function()
     	{
-    		this._eventManager = new EventManager(this);
-    		this._viewManager = new ViewManager(this);
-
     		this._appChannel.reply(Channel.APPLICATION.Topics.VIEW_CHANGED.name, this._onViewChanged, this);
 
     		Marionette.View.prototype.initialize.call(this);
@@ -84,19 +72,13 @@ define(function (require)
     	render: function ()
     	{
 			this.$el.html(this.template());
+    		this.bindUIElements();
 
 			this._setupMenuSelection(Menu.DEFAULT_ROUTE);
 
     		Marionette.View.prototype.render.call(this);
 
     		return this;
-    	},
-
-    	close: function ()
-    	{
-    		Marionette.View.prototype.destroy.call(this);
-
-    		this._eventManager.destroy();
     	},
 
     	template: function()
@@ -162,7 +144,7 @@ define(function (require)
 
     	_clearMenuSelection: function()
     	{
-    		var items = this._getItems();
+    		var items = this.ui.items;
 
     		$.each(items, function (index, item)
     		{
@@ -174,7 +156,7 @@ define(function (require)
 
     	_highlightSelection: function(route)
     	{
-    		var items = this._getItems();
+    		var items = this.ui.items;
 
     		$.each(items, function (index, item)
     		{

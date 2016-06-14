@@ -258,3 +258,8 @@ body
 {
 	margin-top: 10px;
 }
+
+
+#toast-container > div {
+    width: 300px;
+}

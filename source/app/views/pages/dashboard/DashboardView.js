@@ -18,7 +18,9 @@ define(function (require)
     var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
     var Channel = require('messaging/Channel');
-    var EventManager = require('views/EventManager');
+    var DataBinder = require('views/behaviors/DataBinder');
+    var EventCleaner = require('views/behaviors/EventCleaner');
+    var Validator = require('views/behaviors/Validator');
 
 	//#endregion
 
@@ -27,7 +29,6 @@ define(function (require)
     	//#region Fields - Instance Member
 
 		_viewTemplate: ViewTemplate,
-    	_eventManager: null,
 		_appChannel: Backbone.Radio.channel(Channel.APPLICATION.name),
 
     	//#endregion
@@ -39,6 +40,12 @@ define(function (require)
 
     	events:
 		{
+		},
+
+    	behaviors:
+		{
+			DataBinder: {},
+			//EventCleaner: {}
 		},
 
 		//#endregion
@@ -58,14 +65,13 @@ define(function (require)
 
     	initialize: function()
     	{
-    		this._eventManager = new EventManager(this);
-
     		Marionette.View.prototype.initialize.call(this);
     	},
 
     	render: function ()
     	{
     		this.$el.html(this.template());
+    		this.bindUIElements();
 
 			this._setTitle();
 			this._notifyNavigationCompletion();
@@ -74,14 +80,7 @@ define(function (require)
 
     		return this;
     	},
-
-    	close: function ()
-    	{
-    		Marionette.View.prototype.destroy.call(this);
-
-    		this._eventManager.destroy();
-    	},
-
+		    	
     	template: function()
     	{
     		return this._viewTemplate;

@@ -37,10 +37,12 @@
     "select2-dist": "^4.0.3",
     "select2-bootstrap3-css": "^1.4.6",
     "bootstrap-material-datetimepicker": "^2.7.1",
+    "bootstrap-validator": "^0.10.2",
     "moment": "^2.13.0",
     "moment-timezone": "^0.5.4",
     "decimal.js": "^5.0.8",
-    "pdfjs-dist": "^1.5.294"
+    "pdfjs-dist": "^1.5.294",
+    "toastr": "^2.1.2"
   },
   "resolutions": {
     "backbone": ">=0.9.2",

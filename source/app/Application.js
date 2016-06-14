@@ -29,6 +29,8 @@ define(function (require) {
 
         onStart: function ()
         {
+        	window.Behaviors = {};
+
 			this.routers[DefaultRouter.NAME] = new DefaultRouter({
                 pushState: true,
                 initialData: this.options.initialData
@@ -63,6 +65,11 @@ define(function (require) {
     },
 	{
 	});
+
+    Marionette.Behaviors.behaviorsLookup = function ()
+    {
+		return window.Behaviors;
+	}
 
     return Application;
 });
