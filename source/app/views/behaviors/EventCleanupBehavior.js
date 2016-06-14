@@ -13,11 +13,10 @@ define(function (require)
     var _ = require('underscore');
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
-	var Notification = require('views/widgets/notification/Notification');
 
 	//#endregion
 
-    var Notifier = Marionette.Behavior.extend(
+    var EventCleanupBehavior = Marionette.Behavior.extend(
 	{
 
     	//#region Fields - Instance Member
@@ -60,27 +59,28 @@ define(function (require)
 
     	//#endregion
 
-		//#region Functions - Instance Member - (behavior methods)
+		//#region Functions - Instance Member - (callbacks)
 
-		onNotifySuccess: function (message, title)
-		{
-			Notification.showSuccess(message, title);
-		},
+    	onDestroy: function()
+    	{
+    		if (this.view)
+    		{
+    			if (this.view.model)
+    			{
+    				this.view.model.off(null, null, this);
+    				this.view.model = null;
+    			}
 
-		onNotifyInformation: function (message, title)
-		{
-			Notification.showInformation(message, title);
-		},
+    			this.view.remove();
+    			this.view.unbind();
+    			this.view.undelegateEvents();
 
-		onNotifyWarning: function (message, title)
-		{
-			Notification.showWarning(message, title);
-		},
+    			this.view.$el.remove();
+    			this.view.$el.unbind();
 
-		onNotifyError: function (message, title)
-		{
-			Notification.showError(message, title);
-		}
+    			this.view.$el.empty();
+    		}
+    	}
 
     	//#endregion
 		
@@ -103,7 +103,7 @@ define(function (require)
 
 	//#endregion
 
-	window.Behaviors.Notifier = Notifier;
+	window.Behaviors.EventCleanup = EventCleanupBehavior;
 
-    return Notifier;
+    return EventCleanupBehavior;
 });

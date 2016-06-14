@@ -20,10 +20,10 @@ define(function (require)
     var NavigationManager = require('routing/NavigationManager');
     var Channel = require('messaging/Channel');
     var ViewEventCategory = require('views/ViewEventCategory');
-    var DataBinder = require('views/behaviors/DataBinder');
-    var EventCleaner = require('views/behaviors/EventCleaner');
-    var Notifier = require('views/behaviors/Notifier');
-    var Validator = require('views/behaviors/Validator');
+    var DataBindingBehavior = require('views/behaviors/DataBindingBehavior');
+    var EventCleanupBehavior = require('views/behaviors/EventCleanupBehavior');
+    var NotifyingBehavior = require('views/behaviors/NotifyingBehavior');
+    var ValidationBehavior = require('views/behaviors/ValidationBehavior');
     var SampleService = require('services/SampleService');
 
 	//#endregion
@@ -60,10 +60,10 @@ define(function (require)
 
     	behaviors:
 		{
-			Notifier: {},
-			DataBinder: {},
-			Validator: {},
-			EventCleaner: {}
+			Notify: {},
+			DataBinding: {},
+			Validation: {},
+			EventCleanup: {}
 		},
 
 		//#endregion

@@ -13,11 +13,11 @@ define(function (require)
     var _ = require('underscore');
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
-    var BSValidator = require('bootstrap-validator');
+	var Stickit = require('backbone.stickit');
 
 	//#endregion
 
-    var Validator = Marionette.Behavior.extend(
+    var DataBindingBehavior = Marionette.Behavior.extend(
 	{
 
     	//#region Fields - Instance Member
@@ -53,21 +53,41 @@ define(function (require)
 
     	//#region Functions - Instance Member - (view lifecycle)
 
-    	onRender: function()
+    	initialize: function()
     	{
-    		var validationOptions = {};
-
-    		if (this.view.validation)
-    		{
-    			validationOptions = this.view.validation;
-    		}
-
-    		this.view.$el.find('form').validator(validationOptions);
+    		Marionette.Behavior.prototype.initialize.call(this);
     	},
 
     	//#endregion
 
-    	//#region Functions - Instance Member - (callbacks)
+		//#region Functions - Instance Member - (behavior methods)
+
+    	onDataBind: function()
+    	{
+    		if (this.view)
+    		{
+    			if (this.view.stickit)
+    			{
+    				this.view.stickit();
+    			}
+    		}
+    	},
+
+    	onDataUnbind: function()
+    	{
+    		if (this.view)
+    		{
+    			if (this.view.unstickit)
+    			{
+    				this.view.unstickit();
+    			}
+    		}
+    	},
+
+		onDestroy: function()
+		{
+			this.onDataUnbind();
+		}
 
     	//#endregion
 		
@@ -90,7 +110,7 @@ define(function (require)
 
 	//#endregion
 
-	window.Behaviors.Validator = Validator;
+	window.Behaviors.DataBinding = DataBindingBehavior;
 
-    return Validator;
+    return DataBindingBehavior;
 });

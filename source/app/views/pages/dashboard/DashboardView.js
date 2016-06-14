@@ -18,9 +18,10 @@ define(function (require)
     var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
     var Channel = require('messaging/Channel');
-    var DataBinder = require('views/behaviors/DataBinder');
-    var EventCleaner = require('views/behaviors/EventCleaner');
-    var Validator = require('views/behaviors/Validator');
+    var DataBindingBehavior = require('views/behaviors/DataBindingBehavior');
+    var EventCleanupBehavior = require('views/behaviors/EventCleanupBehavior');
+    var NotifyingBehavior = require('views/behaviors/NotifyingBehavior');
+    var ValidationBehavior = require('views/behaviors/ValidationBehavior');
 
 	//#endregion
 
@@ -35,7 +36,8 @@ define(function (require)
 
 		//#region Hashes - Instance Member
 
-    	ui: {
+		ui:
+		{
     	},
 
     	events:
@@ -44,8 +46,10 @@ define(function (require)
 
     	behaviors:
 		{
-			DataBinder: {},
-			//EventCleaner: {}
+			Notify: {},
+			DataBinding: {},
+			Validation: {},
+			EventCleanup: {}
 		},
 
 		//#endregion

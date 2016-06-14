@@ -13,11 +13,11 @@ define(function (require)
     var _ = require('underscore');
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
-	var Stickit = require('backbone.stickit');
+	var Notification = require('views/widgets/notification/Notification');
 
 	//#endregion
 
-    var DataBinder = Marionette.Behavior.extend(
+    var NotifyingBehavior = Marionette.Behavior.extend(
 	{
 
     	//#region Fields - Instance Member
@@ -62,31 +62,24 @@ define(function (require)
 
 		//#region Functions - Instance Member - (behavior methods)
 
-    	onDataBind: function()
-    	{
-    		if (this.view)
-    		{
-    			if (this.view.stickit)
-    			{
-    				this.view.stickit();
-    			}
-    		}
-    	},
-
-    	onDataUnbind: function()
-    	{
-    		if (this.view)
-    		{
-    			if (this.view.unstickit)
-    			{
-    				this.view.unstickit();
-    			}
-    		}
-    	},
-
-		onDestroy: function()
+		onNotifySuccess: function (message, title)
 		{
-			this.onDataUnbind();
+			Notification.showSuccess(message, title);
+		},
+
+		onNotifyInformation: function (message, title)
+		{
+			Notification.showInformation(message, title);
+		},
+
+		onNotifyWarning: function (message, title)
+		{
+			Notification.showWarning(message, title);
+		},
+
+		onNotifyError: function (message, title)
+		{
+			Notification.showError(message, title);
 		}
 
     	//#endregion
@@ -110,7 +103,7 @@ define(function (require)
 
 	//#endregion
 
-	window.Behaviors.DataBinder = DataBinder;
+	window.Behaviors.Notify = NotifyingBehavior;
 
-    return DataBinder;
+    return NotifyingBehavior;
 });

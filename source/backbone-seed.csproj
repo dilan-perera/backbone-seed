@@ -58,10 +58,10 @@
     <Content Include="app\services\SampleService.js" />
     <Content Include="app\services\Service.js" />
     <Content Include="app\routing\NavigationManager.js" />
-    <Content Include="app\views\behaviors\Notifier.js" />
-    <Content Include="app\views\behaviors\DataBinder.js" />
-    <Content Include="app\views\behaviors\EventCleaner.js" />
-    <Content Include="app\views\behaviors\Validator.js" />
+    <Content Include="app\views\behaviors\NotifyingBehavior.js" />
+    <Content Include="app\views\behaviors\DataBindingBehavior.js" />
+    <Content Include="app\views\behaviors\EventCleanupBehavior.js" />
+    <Content Include="app\views\behaviors\ValidationBehavior.js" />
     <None Include="app\views\pages\formview\main.tmpl" />
     <Content Include="app\views\ViewEventCategory.js" />
     <Content Include="app\views\pages\formview\FormView.js" />

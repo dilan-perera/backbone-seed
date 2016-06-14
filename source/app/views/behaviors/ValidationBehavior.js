@@ -13,10 +13,11 @@ define(function (require)
     var _ = require('underscore');
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
+    var BSValidator = require('bootstrap-validator');
 
 	//#endregion
 
-    var EventCleaner = Marionette.Behavior.extend(
+    var ValidationBehavior = Marionette.Behavior.extend(
 	{
 
     	//#region Fields - Instance Member
@@ -52,35 +53,21 @@ define(function (require)
 
     	//#region Functions - Instance Member - (view lifecycle)
 
-    	initialize: function()
+    	onRender: function()
     	{
-    		Marionette.Behavior.prototype.initialize.call(this);
+    		var validationOptions = {};
+
+    		if (this.view.validation)
+    		{
+    			validationOptions = this.view.validation;
+    		}
+
+    		this.view.$el.find('form').validator(validationOptions);
     	},
 
     	//#endregion
 
-		//#region Functions - Instance Member - (callbacks)
-
-    	onDestroy: function()
-    	{
-    		if (this.view)
-    		{
-    			if (this.view.model)
-    			{
-    				this.view.model.off(null, null, this);
-    				this.view.model = null;
-    			}
-
-    			this.view.remove();
-    			this.view.unbind();
-    			this.view.undelegateEvents();
-
-    			this.view.$el.remove();
-    			this.view.$el.unbind();
-
-    			this.view.$el.empty();
-    		}
-    	}
+    	//#region Functions - Instance Member - (callbacks)
 
     	//#endregion
 		
@@ -103,7 +90,7 @@ define(function (require)
 
 	//#endregion
 
-	window.Behaviors.EventCleaner = EventCleaner;
+	window.Behaviors.Validation = ValidationBehavior;
 
-    return EventCleaner;
+    return ValidationBehavior;
 });
