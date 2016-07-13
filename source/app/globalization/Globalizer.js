@@ -62,17 +62,24 @@ define(['require',
 
     	setCulture: function(culture)
     	{
-    		var cultureContainer = this._getCultureContainer(culture);
-
-    		if (cultureContainer != null)
+    		if (Globalizer.MUST_USE_ASYNC_CULTURE_CHANGE)
     		{
-    			this._currentCulture = culture;
+				// TODO: implement
+    		}
+    		else
+    		{
+    			var cultureContainer = this._getCultureContainer(culture);
 
-    			this._saveCulturePreference();
-
-    			if (Globalizer.AUTO_APPLY_CULTURE_ON_CHANGE)
+    			if (cultureContainer != null)
     			{
-    				this._applyCulture(this._currentCulture, null);
+    				this._currentCulture = culture;
+
+    				this._saveCulturePreference();
+
+    				if (Globalizer.MUST_AUTO_APPLY_CULTURE_ON_CHANGE)
+    				{
+    					this._applyCulture(this._currentCulture, null);
+    				}
     			}
     		}
     	},
@@ -356,7 +363,8 @@ define(['require',
     });
 
     Globalizer.DEFAULT_CULTURE = APP_DEFAULT_CULTURE;
-    Globalizer.AUTO_APPLY_CULTURE_ON_CHANGE = false;
+    Globalizer.MUST_USE_ASYNC_CULTURE_CHANGE = false;
+    Globalizer.MUST_AUTO_APPLY_CULTURE_ON_CHANGE = false;
     Globalizer.SECTION_LANG_STRING = 'l.s';
     Globalizer.DATA_ATTRIBUTE_TEXT = 'data-i18n-t';
     Globalizer.DATA_ATTRIBUTE_VALUE = 'data-i18n-v';
@@ -372,7 +380,17 @@ define(['require',
     if (!(window.Singletons.Globalizer))
     {
     	window.Singletons.Globalizer = new Globalizer();
-    }
+		
+		window.Singletons.Globalizer.DEFAULT_CULTURE = Globalizer.DEFAULT_CULTURE;
+		window.Singletons.Globalizer.MUST_USE_ASYNC_CULTURE_CHANGE = Globalizer.MUST_USE_ASYNC_CULTURE_CHANGE;
+		window.Singletons.Globalizer.MUST_AUTO_APPLY_CULTURE_ON_CHANGE = Globalizer.MUST_AUTO_APPLY_CULTURE_ON_CHANGE;
+		window.Singletons.Globalizer.SECTION_LANG_STRING = Globalizer.SECTION_LANG_STRING;
+		window.Singletons.Globalizer.DATA_ATTRIBUTE_TEXT = Globalizer.DATA_ATTRIBUTE_TEXT;
+		window.Singletons.Globalizer.DATA_ATTRIBUTE_VALUE = Globalizer.DATA_ATTRIBUTE_VALUE;
+		window.Singletons.Globalizer.DATA_ATTRIBUTE_HTML = Globalizer.DATA_ATTRIBUTE_HTML;
+		window.Singletons.Globalizer.DATA_ATTRIBUTE_TOOLTIP = Globalizer.DATA_ATTRIBUTE_TOOLTIP;
+		window.Singletons.Globalizer.DATA_ATTRIBUTE_PLACEHOLDER = Globalizer.DATA_ATTRIBUTE_PLACEHOLDER;
+	}
 
 	// ensure singleton instance is returned
     return window.Singletons.Globalizer;
