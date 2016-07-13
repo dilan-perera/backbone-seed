@@ -118,7 +118,7 @@ define(function (require)
     				if (mustUseResourcePack)
     				{
     					titleText = Globalizer.getString(request.title);
-    					this.ui.viewTitle.attr('data-i18n-t', request.title);
+    					this.ui.viewTitle.attr(Globalizer.DATA_ATTRIBUTE_TEXT, request.title);
 					}
     				else
     				{
@@ -137,7 +137,7 @@ define(function (require)
     					if (mustUseResourcePack)
     					{
     						windowTitleText = Globalizer.getString(request.windowTitle);
-    						titleEl.attr('data-i18n-t', request.windowTitle);
+    						titleEl.attr(Globalizer.DATA_ATTRIBUTE_TEXT, request.windowTitle);
 						}
     					else
     					{
@@ -151,7 +151,7 @@ define(function (require)
     			{
     				if (mustUseResourcePack)
     				{
-    					titleEl.attr('data-i18n-t', request.title);
+    					titleEl.attr(Globalizer.DATA_ATTRIBUTE_TEXT, request.title);
     				}
 
     				document.title = titleText;

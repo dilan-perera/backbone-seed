@@ -282,19 +282,19 @@ define(['require',
     		}
 
     		// apply to text
-    		this._processResourceType(targetElement, 'data-i18n-t', culture, null, $.proxy(this._setText, this));
+    		this._processResourceType(targetElement, Globalizer.DATA_ATTRIBUTE_TEXT, culture, null, $.proxy(this._setText, this));
 			
     		// apply to HTML
-    		this._processResourceType(targetElement, 'data-i18n-h', culture, null, $.proxy(this._setHtml, this));
+    		this._processResourceType(targetElement, Globalizer.DATA_ATTRIBUTE_HTML, culture, null, $.proxy(this._setHtml, this));
 
     		// apply to placeholders
-    		this._processResourceType(targetElement, 'data-i18n-ph', culture, null, $.proxy(this._setWatermark, this));
+    		this._processResourceType(targetElement, Globalizer.DATA_ATTRIBUTE_PLACEHOLDER, culture, null, $.proxy(this._setWatermark, this));
 
     		// apply to tooltips
-    		this._processResourceType(targetElement, 'data-i18n-tt', culture, null, $.proxy(this._setTooltip, this));
+    		this._processResourceType(targetElement, Globalizer.DATA_ATTRIBUTE_TOOLTIP, culture, null, $.proxy(this._setTooltip, this));
 
     		// apply to values
-    		this._processResourceType(targetElement, 'data-i18n-v', culture, null, $.proxy(this._setValue, this));		
+    		this._processResourceType(targetElement, Globalizer.DATA_ATTRIBUTE_VALUE, culture, null, $.proxy(this._setValue, this));		
     	},
 
     	_processResourceType: function(targetElement, attributeSelector, culture, section, callback)
@@ -358,6 +358,11 @@ define(['require',
     Globalizer.DEFAULT_CULTURE = APP_DEFAULT_CULTURE;
     Globalizer.AUTO_APPLY_CULTURE_ON_CHANGE = false;
     Globalizer.SECTION_LANG_STRING = 'l.s';
+    Globalizer.DATA_ATTRIBUTE_TEXT = 'data-i18n-t';
+    Globalizer.DATA_ATTRIBUTE_VALUE = 'data-i18n-v';
+    Globalizer.DATA_ATTRIBUTE_HTML = 'data-i18n-h';
+    Globalizer.DATA_ATTRIBUTE_TOOLTIP = 'data-i18n-tt';
+    Globalizer.DATA_ATTRIBUTE_PLACEHOLDER = 'data-i18n-ph';
 
     if (!(window.Singletons))
     {

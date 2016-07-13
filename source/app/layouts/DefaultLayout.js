@@ -155,17 +155,17 @@ define(function (require) {
     					var sidebarRegion = thisScope._getSidebarRegion();
     					var contentRegion = thisScope._getContentRegion();
 
+						if (thisScope._sidebarView == null)
+						{
+							thisScope._sidebarView = regionViewLoader(sidebarRegion, SidebarView, sidebarOptions);
+						}
+
 						if (thisScope._contentView)
 						{
 							//thisScope._contentView.close();
 						}
 
 						thisScope._contentView = regionViewLoader(contentRegion, ContentView, contentOptions);
-
-						if (thisScope._sidebarView == null)
-						{
-							thisScope._sidebarView = regionViewLoader(sidebarRegion, SidebarView, sidebarOptions);
-						}
 					});
     		}
 			else if (contentViewPath)
