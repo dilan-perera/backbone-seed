@@ -40,7 +40,8 @@ define(function (require)
     		value: 3000, name: 'Application',
     		Topics: {
     			TITLE_CHANGE: { value: 3001, name: 'change:title' },
-    			VIEW_CHANGED: { value: 3002, name: 'changed:view' }
+    			VIEW_CHANGED: { value: 3002, name: 'changed:view' },
+    			CULTURE_CHANGE: { value: 3003, name: 'change:culture' }
     		}
     	}
 

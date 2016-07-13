@@ -64,6 +64,11 @@ define(function (require) {
         	this._showView('show:form', {});
         },
 
+        showGlobalization: function ()
+        {
+        	this._showView('show:globalization', {});
+        },
+
     	//#endregion
 
     	//#region Functions - Instance Member - (helpers)

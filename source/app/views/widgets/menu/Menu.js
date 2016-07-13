@@ -19,6 +19,7 @@ define(function (require)
     var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
     var Channel = require('messaging/Channel');
+    var GlobalizingBehavior = require('views/behaviors/GlobalizingBehavior');
 
 	//#endregion
 
@@ -41,6 +42,11 @@ define(function (require)
     	events:
 		{
 			'click @ui.items': '_onItemClicked'
+		},
+
+    	behaviors:
+		{
+			Globalize: {},
 		},
 
 		//#endregion

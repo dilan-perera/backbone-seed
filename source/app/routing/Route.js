@@ -53,6 +53,13 @@ define(function (require)
 			viewName: 'TabularView', viewPath: 'views/pages/tabularview/TabularView'
     	},
 
+    	GLOBALIZATION: {
+    		value: 5, name: 'Globalization',
+    		path: 'globalization', controller: 'Default', action: 'showGlobalization',
+    		router: 'Default', baseUrl: 'globalization',
+			viewName: 'GlobalizationView', viewPath: 'views/pages/globalizationview/GlobalizationView'
+    	},
+
     	//#endregion
 
     };

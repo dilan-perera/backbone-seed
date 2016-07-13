@@ -24,7 +24,8 @@ require.config({
         'datatables.net-responsive': '../lib/datatables.net-responsive/js/dataTables.responsive.min',
         'datatables.net-responsive-bs': '../lib/datatables.net-responsive-bs/js/responsive.bootstrap',
         'toastr': '../lib/toastr/toastr.min',
-        'jquery': '../lib/jquery/dist/jquery.min'
+        'jquery': '../lib/jquery/dist/jquery.min',
+        'jquery-extensions': '../scripts/extensions-jquery'
     },
 
     shim: {

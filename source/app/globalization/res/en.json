@@ -1,0 +1,25 @@
+﻿{
+	"resource": 
+	{
+		"culture": "en",
+		"lang": 
+		{
+			"strings": 
+			{
+				"Language": "English",
+
+				"ApplicationName": "Backbone Seed",
+				"Copyright": "Copyright &copy; Dilan Perera, 2016",
+
+				"SelectLabel": "Select",
+				"AcceptButtonText": "OK",
+				"CancelButtonText": "Cancel",
+
+				"DashboardViewTitle": "Dashboard",
+				"FormViewTitle": "Form",
+				"TabularViewTitle": "Tabular",
+				"GlobalizationViewTitle": "Globalization"
+			}
+		}
+	}
+}

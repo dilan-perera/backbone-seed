@@ -1,0 +1,369 @@
+﻿
+const APP_DEFAULT_CULTURE = 'en';
+
+define(['require',
+	'text!globalization/res/' + APP_DEFAULT_CULTURE + '.json'],
+	function (require,
+		AppDefaultCulture)
+{
+	//#region Browser Directives
+
+    'use strict';
+
+	//#endregion
+
+	//#region Imports
+
+    var $ = require('jquery');
+    var _ = require('underscore');
+    var Backbone = require('backbone');
+    var Marionette = require('backbone.marionette');
+
+    var DefaultCulture = AppDefaultCulture;
+
+    const COOKIE_NAME = 'BackboneSeed_Culture';
+
+	//#endregion
+
+    var Globalizer = Marionette.Object.extend({
+
+    	//#region Functions - Instance Member
+
+    	_currentCulture: APP_DEFAULT_CULTURE,
+
+    	//#endregion
+
+    	//#region Hashes - Instance Member
+
+    	cultures:
+		{
+
+		},
+
+    	//#endregion
+
+    	//#region Functions - Instance Member
+
+    	//#region Functions - Instance Member - (constructors)
+
+    	constructor: function ()
+    	{
+			Marionette.Object.apply(this, arguments);
+    	},
+
+    	//#endregion
+
+    	//#region Functions - Instance Member - (getters/setters)
+
+    	getCulture: function()
+    	{
+    		return this._currentCulture;
+    	},
+
+    	setCulture: function(culture)
+    	{
+    		var cultureContainer = this._getCultureContainer(culture);
+
+    		if (cultureContainer != null)
+    		{
+    			this._currentCulture = culture;
+
+    			this._saveCulturePreference();
+
+    			if (Globalizer.AUTO_APPLY_CULTURE_ON_CHANGE)
+    			{
+    				this._applyCulture(this._currentCulture, null);
+    			}
+    		}
+    	},
+
+    	getLanguage: function()
+    	{
+    		var container = null;
+
+    		if (this.cultures[this._currentCulture] != null)
+    		{
+    			let cultureContent = this.cultures[this._currentCulture];
+
+    			if (cultureContent != null)
+    			{
+    				container = cultureContent.resource.lang;
+    			}
+    		}
+
+    		return container;
+    	},
+
+    	//#endregion
+
+    	//#region Functions - Instance Member - (object lifecycle)
+
+    	initialize: function()
+    	{
+    		this.cultures[APP_DEFAULT_CULTURE] = JSON.parse(DefaultCulture);
+
+    		Marionette.Object.prototype.initialize.call(this);
+
+    		this._loadCulturePreference();
+    	},
+
+    	destroy: function()
+    	{
+    		this._saveCulturePreference();
+
+    		Marionette.Object.prototype.destroy.call(this);
+    	},
+
+    	//#endregion
+
+    	//#region Functions - Instance Member - (globalization)
+		
+    	applyCulture: function(target)
+    	{
+    		this._applyCulture(this._currentCulture, target);
+    	},
+
+    	getString: function(culture, key)
+    	{
+    		var text = '';
+
+    		const RESOURCE_TYPE = 'lang';
+
+    		var resourceKey = 'resource.' + RESOURCE_TYPE + '.' + key;
+
+    		text = this._getValue(resourceKey, culture);
+
+    		return text;
+    	},
+
+    	saveCulturePreference: function()
+    	{
+    		this._saveCulturePreference();
+    	},
+
+    	//#endregion
+
+    	//#region Functions - Instance Member - (helpers)
+		
+    	_loadCulturePreference: function(cookieName)
+		{
+    		var validatedCookieName = this._getValidatedCookieName(cookieName);
+
+    		var culture = $.fn.readCookie(validatedCookieName);
+			
+    		if (culture)
+    		{
+    			if (culture == 'null')
+    			{
+    				culture = APP_DEFAULT_CULTURE;
+    			}
+    		}
+    		else
+			{
+    			culture = APP_DEFAULT_CULTURE;
+    		}
+    		
+    		this.setCulture(culture);
+    	},
+		
+    	_saveCulturePreference: function(cookieName)
+    	{
+    		var validatedCookieName = this._getValidatedCookieName(cookieName);
+
+    		$.fn.setCookie(validatedCookieName, this._currentCulture);
+    	},
+
+    	_getValidatedCookieName: function(cookieName)
+    	{
+    		var validatedCookieName = COOKIE_NAME;
+
+    		if (cookieName)
+    		{
+    			validatedCookieName = cookieName;
+    		}
+
+    		return validatedCookieName;
+    	},
+		
+    	_getValidatedCulture: function(culture)
+    	{
+    		var validatedCulture = this._currentCulture;
+
+    		if (culture)
+    		{
+    			validatedCulture = culture;
+    		}
+
+    		return validatedCulture;
+    	},
+
+    	_getCultureContainer: function(culture)
+    	{
+    		var cultureContainer = null;
+
+    		var validatedCulture = this._getValidatedCulture(culture);
+
+    		if (!(this.cultures[validatedCulture]))
+    		{
+    			this.cultures[validatedCulture] = this._downloadCultureResourcePack(culture);
+    		}
+
+    		cultureContainer = this.cultures[validatedCulture];
+
+    		return cultureContainer;
+    	},
+
+    	_downloadCultureResourcePack: function(culture)
+    	{
+    		var resource = null;
+
+    		var ajaxSettings = {
+    			type: 'GET',
+    			url: 'app/globalization/res/' + culture + '.json' + '?' + 'v=' + VERSION,
+    			async: false
+    		};
+
+			$.ajax(ajaxSettings).success(function (data, textStatus, jqXHR)
+			{
+				resource = jqXHR.responseJSON;
+			});
+
+    		return resource;
+    	},
+		
+    	_getValue: function(resourceKey, culture, type)
+    	{
+    		var value = '';
+
+    		var validatedCulture = this._getValidatedCulture(culture);
+    		var cultureContainer = this._getCultureContainer(culture);
+
+    		if (type)
+    		{
+    			switch (type)
+    			{
+    				case Globalizer.SECTION_LANG_STRING:
+    					cultureContainer = cultureContainer.resource.lang.strings;
+    					break;
+    				default:
+    					cultureContainer = cultureContainer.resource.lang.strings;
+    					break;
+    			}
+    		}
+    		else
+    		{
+    			cultureContainer = cultureContainer.resource.lang.strings;
+    		}
+
+    		if (cultureContainer)
+    		{
+    			value = $.fn.getObject(cultureContainer, resourceKey);
+    		}
+
+    		return value;
+    	},
+
+    	_applyCulture: function(culture, target)
+    	{
+    		var targetElement = null;
+
+    		if (target)
+    		{
+    			targetElement = $(target);
+    		}
+    		else
+    		{
+    			targetElement = $(document);
+    		}
+
+    		// apply to text
+    		this._processResourceType(targetElement, 'data-i18n-t', culture, null, $.proxy(this._setText, this));
+			
+    		// apply to HTML
+    		this._processResourceType(targetElement, 'data-i18n-h', culture, null, $.proxy(this._setHtml, this));
+
+    		// apply to placeholders
+    		this._processResourceType(targetElement, 'data-i18n-ph', culture, null, $.proxy(this._setWatermark, this));
+
+    		// apply to tooltips
+    		this._processResourceType(targetElement, 'data-i18n-tt', culture, null, $.proxy(this._setTooltip, this));
+
+    		// apply to values
+    		this._processResourceType(targetElement, 'data-i18n-v', culture, null, $.proxy(this._setValue, this));		
+    	},
+
+    	_processResourceType: function(targetElement, attributeSelector, culture, section, callback)
+    	{
+    		var thisScope = this;
+
+    		targetElement.find('[' + attributeSelector + ']').each(function (index, element)
+    		{
+    			var el = $(element);
+
+    			let key = el.attr(attributeSelector);
+
+    			if (key)
+    			{
+    				let value = thisScope._getValue(key, culture);
+
+    				if (!(value))
+    				{
+    					value = '';
+    				}
+
+    				if (callback)
+    				{
+    					callback(el, value);
+    				}
+				}
+			});
+    	},
+				
+    	_setValue: function(element, value)
+    	{
+    		element.val(value);
+    	},
+				
+    	_setHtml: function(element, value)
+    	{
+    		element.html(value);
+    	},
+
+    	_setText: function(element, value)
+    	{
+    		element.text(value);
+    	},
+		
+    	_setTooltip: function(element, value)
+    	{
+    		element.attr('title', value);
+    	},
+
+    	_setWatermark: function(element, value)
+    	{
+    		element.attr('placeholder', value);
+    	}
+
+    	//#endregion
+
+    	//#endregion
+
+    });
+
+    Globalizer.DEFAULT_CULTURE = APP_DEFAULT_CULTURE;
+    Globalizer.AUTO_APPLY_CULTURE_ON_CHANGE = false;
+    Globalizer.SECTION_LANG_STRING = 'l.s';
+
+    if (!(window.Singletons))
+    {
+    	window.Singletons = {};
+    }
+
+    if (!(window.Singletons.Globalizer))
+    {
+    	window.Singletons.Globalizer = new Globalizer();
+    }
+
+	// ensure singleton instance is returned
+    return window.Singletons.Globalizer;
+});

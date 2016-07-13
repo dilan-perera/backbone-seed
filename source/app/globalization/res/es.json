@@ -1,0 +1,25 @@
+﻿{
+	"resource": 
+	{
+		"culture": "es",
+		"lang": 
+		{
+			"strings": 
+			{
+				"Language": "Español",
+
+				"ApplicationName": "Semilla Backbone",
+				"Copyright": "Derechos de autor &copy; Dilan Perera, 2016",
+
+				"SelectLabel": "Seleccionar",
+				"AcceptButtonText": "Aceptar",
+				"CancelButtonText": "Cancelar",
+
+				"DashboardViewTitle": "Tablero",
+				"FormViewTitle": "Formulario",
+				"TabularViewTitle": "Tabular",
+				"GlobalizationViewTitle": "Globalización"
+			}
+		}
+	}
+}

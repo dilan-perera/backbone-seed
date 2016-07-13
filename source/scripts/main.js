@@ -37,7 +37,7 @@ require(['config'], function () {
     		window.application.start();
     	};
 
-    	require(['bootstrap'], function ()
+     	require(['jquery-extensions', 'bootstrap'], function ()
     	{
     		require(['bootstrap-material-design'], function ()
     		{
@@ -49,6 +49,6 @@ require(['config'], function () {
     				});
     			});
     		});
-    	});
+     	});
     });
 });

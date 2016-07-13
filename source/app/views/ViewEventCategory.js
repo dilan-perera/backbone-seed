@@ -38,7 +38,15 @@ define(function (require)
     			WARNING: { value: 2001, name: 'notify:warning' },
     			ERROR: { value: 2002, name: 'notify:error' }
     		}
-    	}
+    	},
+		
+    	CULTURE: {
+    		value: 3000, name: 'culture',
+    		Events: {
+    			APPLY: { value: 3001, name: 'culture:apply' },
+    			CHANGE: { value: 3002, name: 'culture:change' }
+    		}
+    	},
 
     	//#endregion
 

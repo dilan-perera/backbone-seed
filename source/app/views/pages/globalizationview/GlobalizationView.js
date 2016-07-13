@@ -14,16 +14,25 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
 
-    var ViewTemplate = require('<path_to_template>.tmpl');
+    var ViewTemplate = require('text!views/pages/globalizationview/main.tmpl');
+    var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
+    var Channel = require('messaging/Channel');
+    var ViewEventCategory = require('views/ViewEventCategory');
+    var DataBindingBehavior = require('views/behaviors/DataBindingBehavior');
+    var EventCleanupBehavior = require('views/behaviors/EventCleanupBehavior');
+    var GlobalizingBehavior = require('views/behaviors/GlobalizingBehavior');
+    var NotifyingBehavior = require('views/behaviors/NotifyingBehavior');
+    var ValidationBehavior = require('views/behaviors/ValidationBehavior');
 
 	//#endregion
 
-    var _TemplateView = Marionette.View.extend({
+    var GlobalizationView = Marionette.View.extend({
 
     	//#region Fields - Instance Member
 
 		_viewTemplate: ViewTemplate,
+		_appChannel: Backbone.Radio.channel(Channel.APPLICATION.name),
 
     	//#endregion
 
@@ -31,10 +40,14 @@ define(function (require)
 
 		ui:
 		{
+			'cultureSelectionDataField': '#cultureSelectionDataField',
+			'appNameCaptionField': '#appNameCaptionField',
+			'acceptFormActionButton': '#acceptFormActionButton'
     	},
 
     	events:
 		{
+			'click @ui.acceptFormActionButton': '_onAcceptClicked'
 		},
 
     	bindings:
@@ -43,6 +56,11 @@ define(function (require)
 
     	behaviors:
 		{
+			Globalize: {},
+			Notify: {},
+			DataBinding: {},
+			Validation: {},
+			EventCleanup: {}
 		},
 
 		//#endregion
@@ -53,7 +71,7 @@ define(function (require)
 
     	constructor: function()
     	{
-			Marionette.View.apply(this, arguments);
+    		Marionette.View.apply(this, arguments);
     	},
 
     	//#endregion
@@ -67,6 +85,12 @@ define(function (require)
 
     	render: function ()
     	{
+    		this.$el.html(this.template());
+    		this.bindUIElements();
+
+    		this._setTitle();
+    		this._notifyNavigationCompletion();
+
     		Marionette.View.prototype.render.call(this);
 
     		return this;
@@ -75,13 +99,18 @@ define(function (require)
     	template: function()
     	{
     		return this._viewTemplate;
-		}
+		},
 
     	//#endregion
 
     	//#region Functions - Instance Member - (callbacks)
 
     	//#region Functions - Instance Member - (callbacks) - (UI event handlers)
+
+    	_onAcceptClicked: function(e)
+    	{
+    		this._applyCulture();
+    	},
 
     	//#endregion
 
@@ -95,6 +124,16 @@ define(function (require)
 
     	//#region Functions - Instance Member - (helpers) - (view management)
 
+    	_setTitle: function ()
+    	{
+    		this._appChannel.request(Channel.APPLICATION.Topics.TITLE_CHANGE.name, { title: 'Globalization' });
+    	},
+
+    	_notifyNavigationCompletion: function ()
+    	{
+    		this._appChannel.request(Channel.APPLICATION.Topics.VIEW_CHANGED.name, { route: Route.GLOBALIZATION });
+    	},
+
     	//#endregion
 		
     	//#region Functions - Instance Member - (helpers) - (data binding)
@@ -106,6 +145,15 @@ define(function (require)
     	//#endregion
 		
     	//#region Functions - Instance Member - (helpers) - (other)
+
+    	_applyCulture: function()
+    	{
+    		var culture = this.ui.cultureSelectionDataField.val();
+
+    		this._appChannel.request(Channel.APPLICATION.Topics.CULTURE_CHANGE.name, { culture: culture });
+
+    		//this.triggerMethod(ViewEventCategory.CULTURE.Events.APPLY.name, culture);
+    	}
 
     	//#endregion
 
@@ -126,5 +174,5 @@ define(function (require)
 
 	//#endregion
 
-    return _TemplateView;
+    return GlobalizationView;
 });

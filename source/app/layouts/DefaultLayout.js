@@ -109,6 +109,15 @@ define(function (require) {
 				initialData);
         },
 
+        onShowGlobalization: function(initialData)
+        {
+        	this._showView(
+				Route.GLOBALIZATION.viewPath,
+				initialData,
+				'views/widgets/menu/Menu',
+				initialData);
+        },
+
     	//#endregion
 
     	//#region Functions - Instance Member - (helpers)

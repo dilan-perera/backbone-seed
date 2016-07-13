@@ -46,6 +46,11 @@ define(function (require)
     	NavigationManager.navigate(Route.TABULAR);
     }
 
+    NavigationManager.toGlobalization = function()
+    {
+    	NavigationManager.navigate(Route.GLOBALIZATION);
+    }
+
     //#endregion
 
     //#region Functions - Static Member - (helpers)
