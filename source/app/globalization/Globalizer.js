@@ -25,7 +25,7 @@ define(['require',
 
 	//#endregion
 
-    var Globalizer = Marionette.Object.extend({
+	var Globalizer = {
 
     	//#region Functions - Instance Member
 
@@ -360,7 +360,7 @@ define(['require',
 
     	//#endregion
 
-    });
+    }
 
     Globalizer.DEFAULT_CULTURE = APP_DEFAULT_CULTURE;
     Globalizer.MUST_USE_ASYNC_CULTURE_CHANGE = false;
@@ -372,6 +372,8 @@ define(['require',
     Globalizer.DATA_ATTRIBUTE_TOOLTIP = 'data-i18n-tt';
     Globalizer.DATA_ATTRIBUTE_PLACEHOLDER = 'data-i18n-ph';
 
+    var GlobalizerWrapper = Marionette.Object.extend(Globalizer);
+
     if (!(window.Singletons))
     {
     	window.Singletons = {};
@@ -379,17 +381,7 @@ define(['require',
 
     if (!(window.Singletons.Globalizer))
     {
-    	window.Singletons.Globalizer = new Globalizer();
-		
-		window.Singletons.Globalizer.DEFAULT_CULTURE = Globalizer.DEFAULT_CULTURE;
-		window.Singletons.Globalizer.MUST_USE_ASYNC_CULTURE_CHANGE = Globalizer.MUST_USE_ASYNC_CULTURE_CHANGE;
-		window.Singletons.Globalizer.MUST_AUTO_APPLY_CULTURE_ON_CHANGE = Globalizer.MUST_AUTO_APPLY_CULTURE_ON_CHANGE;
-		window.Singletons.Globalizer.SECTION_LANG_STRING = Globalizer.SECTION_LANG_STRING;
-		window.Singletons.Globalizer.DATA_ATTRIBUTE_TEXT = Globalizer.DATA_ATTRIBUTE_TEXT;
-		window.Singletons.Globalizer.DATA_ATTRIBUTE_VALUE = Globalizer.DATA_ATTRIBUTE_VALUE;
-		window.Singletons.Globalizer.DATA_ATTRIBUTE_HTML = Globalizer.DATA_ATTRIBUTE_HTML;
-		window.Singletons.Globalizer.DATA_ATTRIBUTE_TOOLTIP = Globalizer.DATA_ATTRIBUTE_TOOLTIP;
-		window.Singletons.Globalizer.DATA_ATTRIBUTE_PLACEHOLDER = Globalizer.DATA_ATTRIBUTE_PLACEHOLDER;
+    	window.Singletons.Globalizer = new GlobalizerWrapper();
 	}
 
 	// ensure singleton instance is returned
