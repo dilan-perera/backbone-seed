@@ -24,7 +24,6 @@ define(function (require)
     var EventCleanupBehavior = require('views/behaviors/EventCleanupBehavior');
     var GlobalizingBehavior = require('views/behaviors/GlobalizingBehavior');
     var NotifyingBehavior = require('views/behaviors/NotifyingBehavior');
-    var ValidationBehavior = require('views/behaviors/ValidationBehavior');
 
 	//#endregion
 
@@ -60,7 +59,6 @@ define(function (require)
 			Globalize: {},
 			Notify: {},
 			DataBinding: {},
-			Validation: {},
 			EventCleanup: {}
 		},
 
