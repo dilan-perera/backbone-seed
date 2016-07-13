@@ -19,13 +19,16 @@ define(function (require)
 
 	//http://jsfiddle.net/thedersen/udXL5/
 	//http://jsfiddle.net/thedersen/c3kK2/
+	//https://gist.github.com/driehle/2909552
 
 	// Extend the callbacks to work with Bootstrap, as used in this example
 	// See: http://thedersen.com/projects/backbone-validation/#configuration/callbacks
+
     _.extend(Backbone.Validation.callbacks, {
     	valid: function (view, attr, selector)
     	{
-    		var $el = view.$('[name=' + attr + ']'),
+     		debugger;
+	   		var $el = view.$('[name=' + attr + ']'),
 				$group = $el.closest('.form-group');
 
     		$group.removeClass('has-error');
@@ -33,7 +36,8 @@ define(function (require)
     	},
     	invalid: function (view, attr, error, selector)
     	{
-    		var $el = view.$('[name=' + attr + ']'),
+     		debugger;
+	   		var $el = view.$('[name=' + attr + ']'),
 				$group = $el.closest('.form-group');
 
     		$group.addClass('has-error');
@@ -49,15 +53,7 @@ define(function (require)
     	//#endregion
 
     	//#region Hashes - Instance Member
-
-    	ui:
-		{
-    	},
-
-    	events:
-		{
-		},
-		
+				
 		//#endregion
 		
     	//#region Functions - Instance Member
@@ -77,16 +73,29 @@ define(function (require)
 
     	//#region Functions - Instance Member - (view lifecycle)
 
-    	onRender: function()
+    	onAttach: function()
     	{
-    		var validationOptions = {};
+    		this._bind();
+    	},
 
-    		if (this.view.validation)
-    		{
-    			validationOptions = this.view.validation;
-    		}
+    	onDestroy: function ()
+    	{
+    		this._unbind();
+    	},
+		
+    	onValidate: function()
+    	{
+    		this._validate();
+    	},
 
-    		this.view.$el.find('form').validator(validationOptions);
+    	onValidationBind: function()
+    	{
+    		this._bind();
+    	},
+		
+    	onValidationUnbind: function()
+    	{
+    		this._unbind();
     	},
 
     	//#endregion
@@ -95,7 +104,41 @@ define(function (require)
 
     	//#endregion
 		
-    	//#region Functions - Instance Member - (helpers)
+		//#region Functions - Instance Member - (helpers)
+
+    	_bind: function()
+    	{
+    		if (this.view)
+    		{
+    			if (this.view.model)
+    			{
+    				let options = {
+    					forceUpdate: true
+    				};
+
+					Backbone.Validation.bind(this.view, options);
+    			}
+    		}
+    	},
+
+    	_validate: function()
+    	{
+    		if (this.view)
+    		{
+    			if (this.view.model)
+    			{
+    				this.view.model.validate();
+    			}
+    		}
+    	},
+
+    	_unbind: function()
+    	{
+    		if (this.view)
+    		{
+    			Backbone.Validation.unbind(this.view);
+    		}
+    	}
 
     	//#endregion
 

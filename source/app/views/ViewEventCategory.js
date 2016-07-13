@@ -47,6 +47,15 @@ define(function (require)
     			CHANGE: { value: 3002, name: 'culture:change' }
     		}
     	},
+		
+    	VALIDATION: {
+    		value: 4000, name: 'validation',
+    		Events: {
+    			BIND: { value: 4001, name: 'validation:bind' },
+    			VALIDATE: { value: 4001, name: 'validation:validate' },
+    			UNBIND: { value: 4002, name: 'validation:unbind' }
+    		}
+    	},
 
     	//#endregion
 

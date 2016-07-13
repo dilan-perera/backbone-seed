@@ -24,6 +24,7 @@ define(function (require)
     var EventCleanupBehavior = require('views/behaviors/EventCleanupBehavior');
     var NotifyingBehavior = require('views/behaviors/NotifyingBehavior');
     var ValidationBehavior = require('views/behaviors/ValidationBehavior');
+    var ProfileModel = require('models/ProfileModel');
     var SampleService = require('services/SampleService');
 
 	//#endregion
@@ -53,9 +54,9 @@ define(function (require)
 
     	bindings:
 		{
-			'#inputName': 'name',
-			'#inputEmail': 'email',
-			'#inputAge': 'age'
+			'#inputName': { observe: 'name', setOptions: { validate: true }},
+			'#inputEmail': { observe: 'email', setOptions: { validate: true }},
+			'#inputAge': { observe: 'age', setOptions: { validate: true } }
 		},
 
     	behaviors:
@@ -136,9 +137,7 @@ define(function (require)
 
     	_onDataRetrievalSuccess: function(data)
     	{
-			var dataModel = new Backbone.Model(data);
-
-    		this.model = dataModel;
+			this.model = new ProfileModel(data);
 
     		this.triggerMethod(ViewEventCategory.DATABINDING.Events.BIND.name);
     		this.triggerMethod(ViewEventCategory.NOTIFY.Events.SUCCESS.name, 'Success!');
@@ -209,10 +208,14 @@ define(function (require)
 
     	_attemptDataSave: function()
     	{
-    		var request = {};
+    		debugger;
+    		if (this.model.isValid(true))
+    		{       
+    			var request = {};
 
-    		this._sampleService.saveData(request);
-    	},
+    			this._sampleService.saveData(request);
+			}
+    	}
 
     	//#endregion
 		

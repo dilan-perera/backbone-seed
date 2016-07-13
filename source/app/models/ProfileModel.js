@@ -3,111 +3,129 @@ define(function (require)
 {
 	//#region Browser Directives
 
-    'use strict';
+	'use strict';
 
 	//#endregion
 
 	//#region Imports
 
-    var $ = require('jquery');
-    var _ = require('underscore');
-    var Backbone = require('backbone');
-    var BackboneNested = require('backbone.nested-model');
+	var $ = require('jquery');
+	var _ = require('underscore');
+	var Backbone = require('backbone');
+	var BackboneNested = require('backbone.nested-model');
+	var Validation = require('backbone-validation');
 
 	//#endregion
 
-    var ProfileModel = Backbone.NestedModel.extend({
+	var ProfileModel = Backbone.NestedModel.extend({
 
-    	//#region Fields - Instance Member
+		//#region Fields - Instance Member
 
-    	//#endregion
+		//#endregion
 
 		//#region Hashes - Instance Member
 
-    	defaults: function()
-    	{
-    		return
-    		{
-    			name: '',
-    			email: '',
-    			age: 0;
+		defaults: function()
+		{
+			return {
+				name: '',
+				email: '',
+				age: 0
 			};
 		},
 
-    	events:
+		events:
 		{
+		},
+
+		validation:
+		{
+			name:
+			{
+				required: true
+			},
+			email: 
+			{
+				required: true,
+				pattern: 'email'
+			},
+			age: 
+			{
+				required: false,
+				range: [18, 100]
+			}
 		},
 		
 		//#endregion
 		
-    	//#region Functions - Instance Member
+		//#region Functions - Instance Member
 
-    	//#region Functions - Instance Member - (constructors)
+		//#region Functions - Instance Member - (constructors)
 
-    	constructor: function()
-    	{
+		constructor: function()
+		{
 			Backbone.NestedModel.apply(this, arguments);
-    	},
+		},
 
-    	//#endregion
+		//#endregion
 
-    	//#region Functions - Instance Member - (getters/setters)
+		//#region Functions - Instance Member - (getters/setters)
 
-    	//#endregion
+		//#endregion
 
-    	//#region Functions - Instance Member - (model lifecycle)
+		//#region Functions - Instance Member - (model lifecycle)
 
-    	initialize: function()
-    	{
-     		Backbone.NestedModel.prototype.initialize.call(this);
-    	},
+		initialize: function()
+		{
+			Backbone.NestedModel.prototype.initialize.call(this);
+		},
 		
-    	//#endregion
+		//#endregion
 
-    	//#region Functions - Instance Member - (callbacks)
+		//#region Functions - Instance Member - (callbacks)
 
-    	//#region Functions - Instance Member - (callbacks) - (model event handlers)
+		//#region Functions - Instance Member - (callbacks) - (model event handlers)
 
-    	getName: function()
-    	{
-    		return this.get('name');
-    	},
+		getName: function()
+		{
+			return this.get('name');
+		},
 
-    	setName: function(value)
-    	{
-    		this.set('name', value);
-    	},
+		setName: function(value)
+		{
+			this.set('name', value);
+		},
 		
-    	getEmail: function()
-    	{
-    		return this.get('email');
-    	},
+		getEmail: function()
+		{
+			return this.get('email');
+		},
 
-    	setEmail: function(value)
-    	{
-    		this.set('email', value);
-    	},
+		setEmail: function(value)
+		{
+			this.set('email', value);
+		},
 		
-    	getAge: function()
-    	{
-    		return this.get('age');
-    	},
+		getAge: function()
+		{
+			return this.get('age');
+		},
 
-    	setAge: function(value)
-    	{
-    		this.set('age', value);
-    	}
+		setAge: function(value)
+		{
+			this.set('age', value);
+		}
 
-    	//#endregion
+		//#endregion
 
-    	//#endregion
+		//#endregion
 
-    	//#endregion
+		//#endregion
 
-    },
+	},
 	{
 		
-    	//#region Constants - Static Member
+		//#region Constants - Static Member
 
 		//#endregion
 
@@ -117,5 +135,5 @@ define(function (require)
 
 	//#endregion
 
-    return ProfileModel;
+	return ProfileModel;
 });
