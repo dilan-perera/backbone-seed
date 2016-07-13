@@ -176,7 +176,7 @@ define(function (require)
 
     	_setTitle: function()
     	{
-    		this._appChannel.request(Channel.APPLICATION.Topics.TITLE_CHANGE.name, { title: 'Data Form' });
+    		this._appChannel.request(Channel.APPLICATION.Topics.TITLE_CHANGE.name, { title: 'Views.Form.Title' });
     	},
 
     	_notifyNavigationCompletion: function()

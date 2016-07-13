@@ -59,7 +59,24 @@ define(function (require)
 		
     	_onCultureChangeRequested: function (settings)
     	{
-    		Globalizer.setCulture(settings.culture);
+    		var oldCulture = Globalizer.getCulture();
+    		var newCulture = settings.culture;
+
+    		Globalizer.setCulture(newCulture);
+
+    		try
+    		{
+    			this._appChannel.request(Channel.APPLICATION.Topics.CULTURE_CHANGED.name,
+					{
+						oldCulture: oldCulture,
+						newCulture: newCulture
+					});
+    		}
+    		catch (ex)
+    		{
+				// NOTE: sink exception - as failure in event handlers might prevent culture being applied 
+    		}
+
     		Globalizer.applyCulture();
     	}
 

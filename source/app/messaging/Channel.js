@@ -41,7 +41,8 @@ define(function (require)
     		Topics: {
     			TITLE_CHANGE: { value: 3001, name: 'change:title' },
     			VIEW_CHANGED: { value: 3002, name: 'changed:view' },
-    			CULTURE_CHANGE: { value: 3003, name: 'change:culture' }
+    			CULTURE_CHANGE: { value: 3003, name: 'change:culture' },
+    			CULTURE_CHANGED: { value: 3004, name: 'changed:culture' }
     		}
     	}
 

@@ -123,15 +123,19 @@ define(['require',
     		this._applyCulture(this._currentCulture, target);
     	},
 
-    	getString: function(culture, key)
+    	getString: function(key, culture)
     	{
-    		var text = '';
+    		let text = '';
 
-    		const RESOURCE_TYPE = 'lang';
+    		let resourceKey = key;
+    		let validatedCulture = this._getValidatedCulture(culture);
 
-    		var resourceKey = 'resource.' + RESOURCE_TYPE + '.' + key;
+    		text = this._getValue(resourceKey, validatedCulture, Globalizer.SECTION_LANG_STRING);
 
-    		text = this._getValue(resourceKey, culture);
+    		if (!(text))
+    		{
+    			text = '';
+    		}
 
     		return text;
     	},
@@ -153,6 +157,7 @@ define(['require',
 			
     		if (culture)
     		{
+				// NOTE: special case, due to value being returned from the $.fn.readCookie call
     			if (culture == 'null')
     			{
     				culture = APP_DEFAULT_CULTURE;
@@ -304,7 +309,7 @@ define(['require',
 
     			if (key)
     			{
-    				let value = thisScope._getValue(key, culture);
+    				let value = thisScope._getValue(key, culture, Globalizer.SECTION_LANG_STRING);
 
     				if (!(value))
     				{

@@ -16,6 +16,7 @@ define(function (require)
     var Radio = require('backbone.radio');
 
     var Channel = require('messaging/Channel');
+    var Globalizer = require('globalization/Globalizer');
 
 	//#endregion
 
@@ -99,26 +100,62 @@ define(function (require)
     	{
     		if (request)
     		{
+    			let mustUseResourcePack = true;
+
+    			if ((request.mustUseResourcePack !== undefined) ||
+					(request.mustUseResourcePack != null))
+    			{
+    				mustUseResourcePack = request.mustUseResourcePack;
+    			}
+
+    			let titleEl = $('head title').get(0);
+    			titleEl = $(titleEl);
+
+    			let titleText = '';
+    			
+    			if (request.title)
+    			{
+    				if (mustUseResourcePack)
+    				{
+    					titleText = Globalizer.getString(request.title);
+    					this.ui.viewTitle.attr('data-i18n-t', request.title);
+					}
+    				else
+    				{
+    					titleText = request.title;
+    				}
+						
+    				this.ui.viewTitle.text(titleText);
+				}
+
     			if (request.useDistinctTitles)
     			{
-    				if (request.title)
-    				{
-    					this.ui.viewTitle.text(request.title);
-					}
-
     				if (request.windowTitle)
     				{
-    					document.title = request.windowTitle;
-    				}
+    					let windowTitleText = '';
+
+    					if (mustUseResourcePack)
+    					{
+    						windowTitleText = Globalizer.getString(request.windowTitle);
+    						titleEl.attr('data-i18n-t', request.windowTitle);
+						}
+    					else
+    					{
+    						windowTitleText = request.windowTitle;
+    					}
+
+    					document.title = windowTitleText;
+					}
     			}
 				else
     			{
-    				if (request.title)
+    				if (mustUseResourcePack)
     				{
-    					this.ui.viewTitle.text(request.title);
-    					document.title = request.title;
-					}
-    			}
+    					titleEl.attr('data-i18n-t', request.title);
+    				}
+
+    				document.title = titleText;
+				}
     		}
     	}
 

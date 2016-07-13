@@ -110,7 +110,7 @@ define(function (require)
 		
     	_setTitle: function()
     	{
-    		this._appChannel.request(Channel.APPLICATION.Topics.TITLE_CHANGE.name, { title: 'Dashboard' });
+    		this._appChannel.request(Channel.APPLICATION.Topics.TITLE_CHANGE.name, { title: 'Views.Dashboard.Title' });
     	},
 
     	_notifyNavigationCompletion: function()

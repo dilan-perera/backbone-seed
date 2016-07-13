@@ -18,6 +18,7 @@ define(function (require)
     var Route = require('routing/Route');
     var NavigationManager = require('routing/NavigationManager');
     var Channel = require('messaging/Channel');
+    var Globalizer = require('globalization/Globalizer');
     var ViewEventCategory = require('views/ViewEventCategory');
     var DataBindingBehavior = require('views/behaviors/DataBindingBehavior');
     var EventCleanupBehavior = require('views/behaviors/EventCleanupBehavior');
@@ -90,7 +91,8 @@ define(function (require)
 
     		this._setTitle();
     		this._notifyNavigationCompletion();
-
+    		this._initializeCulture();
+			
     		Marionette.View.prototype.render.call(this);
 
     		return this;
@@ -126,7 +128,7 @@ define(function (require)
 
     	_setTitle: function ()
     	{
-    		this._appChannel.request(Channel.APPLICATION.Topics.TITLE_CHANGE.name, { title: 'Globalization' });
+    		this._appChannel.request(Channel.APPLICATION.Topics.TITLE_CHANGE.name, { title: 'Views.Globalization.Title' });
     	},
 
     	_notifyNavigationCompletion: function ()
@@ -145,6 +147,11 @@ define(function (require)
     	//#endregion
 		
     	//#region Functions - Instance Member - (helpers) - (other)
+
+    	_initializeCulture: function()
+    	{
+    		this.ui.cultureSelectionDataField.val(Globalizer.getCulture());
+    	},
 
     	_applyCulture: function()
     	{

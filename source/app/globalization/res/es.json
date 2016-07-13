@@ -15,10 +15,25 @@
 				"AcceptButtonText": "Aceptar",
 				"CancelButtonText": "Cancelar",
 
-				"DashboardViewTitle": "Tablero",
-				"FormViewTitle": "Formulario",
-				"TabularViewTitle": "Tabular",
-				"GlobalizationViewTitle": "Globalización"
+				"Views": 
+				{
+					"Dashboard": 
+					{
+						"Title": "Tablero"
+					},
+					"Form": 
+					{
+						"Title": "Formulario"
+					},
+					"Tabular": 
+					{
+						"Title": "Tabular"
+					},
+					"Globalization": 
+					{
+						"Title": "Globalización"
+					}
+				}
 			}
 		}
 	}
