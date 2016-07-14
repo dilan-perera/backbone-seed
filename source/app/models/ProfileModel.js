@@ -28,9 +28,9 @@ define(function (require)
 		defaults: function()
 		{
 			return {
-				name: '',
-				email: '',
-				age: 0
+				'name': '',
+				'email': '',
+				'age': 0
 			};
 		},
 
@@ -38,21 +38,23 @@ define(function (require)
 		{
 		},
 
-		validation:
+		validation: function ()
 		{
-			name:
-			{
-				required: true
-			},
-			email: 
-			{
-				required: true,
-				pattern: 'email'
-			},
-			age: 
-			{
-				required: false,
-				range: [18, 100]
+			return {
+				name:
+				{
+					required: true
+				},
+				email: 
+				{
+					required: true,
+					pattern: 'email'
+				},
+				age: 
+				{
+					required: false,
+					range: [18, 100]
+				}
 			}
 		},
 		
@@ -114,6 +116,11 @@ define(function (require)
 		setAge: function(value)
 		{
 			this.set('age', value);
+		},
+
+		validate: function()
+		{
+			debugger;
 		}
 
 		//#endregion

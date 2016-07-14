@@ -112,6 +112,15 @@ define(function (require)
     		{
     			if (this.view.model)
     			{
+    				try
+    				{
+    					Backbone.Validation.unbind(this.view);
+    				}
+    				catch (ex)
+    				{
+						// NOTE: sink exception
+    				}
+
     				let options = {
     					forceUpdate: true
     				};
@@ -127,7 +136,7 @@ define(function (require)
     		{
     			if (this.view.model)
     			{
-    				this.view.model.validate();
+    				this.model.isValid({ validate: true });
     			}
     		}
     	},
@@ -136,7 +145,14 @@ define(function (require)
     	{
     		if (this.view)
     		{
-    			Backbone.Validation.unbind(this.view);
+    			try
+    			{
+    				Backbone.Validation.unbind(this.view);
+    			}
+    			catch (ex)
+    			{
+					// NOTE: sink exception
+    			}
     		}
     	}
 

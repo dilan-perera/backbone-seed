@@ -14,6 +14,7 @@ define(function (require)
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
 	var Radio = require('backbone.radio');
+    var Validation = require('backbone-validation');
 
     var ViewTemplate = require('text!views/pages/formview/main.tmpl');
     var Route = require('routing/Route');
@@ -139,7 +140,8 @@ define(function (require)
     	{
 			this.model = new ProfileModel(data);
 
-    		this.triggerMethod(ViewEventCategory.DATABINDING.Events.BIND.name);
+			this.triggerMethod(ViewEventCategory.DATABINDING.Events.BIND.name);
+			this.triggerMethod(ViewEventCategory.VALIDATION.Events.BIND.name);
     		this.triggerMethod(ViewEventCategory.NOTIFY.Events.SUCCESS.name, 'Success!');
     	},
 
@@ -209,7 +211,7 @@ define(function (require)
     	_attemptDataSave: function()
     	{
     		debugger;
-    		if (this.model.isValid(true))
+    		if (this.model.isValid({ validate: true }))
     		{       
     			var request = {};
 
