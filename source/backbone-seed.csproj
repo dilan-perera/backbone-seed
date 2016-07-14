@@ -80,10 +80,10 @@
     <Content Include="app\views\widgets\notification\Notification.js" />
     <Content Include="app\views\_TemplateView.js" />
     <Content Include="app\views\pages\dashboard\DashboardView.js" />
+    <Content Include="lib\backbone-brace-nytimes-cms\dist\backbone.brace.min.js" />
     <Content Include="lib\backbone-nested-model\backbone-nested.js" />
     <Content Include="lib\backbone-validation\dist\backbone-validation-amd-min.js" />
     <Content Include="lib\backbone.babysitter\lib\backbone.babysitter.min.js" />
-    <Content Include="lib\backbone.localStorage\backbone.localStorage-min.js" />
     <Content Include="lib\backbone.marionette\lib\backbone.marionette.min.js" />
     <Content Include="lib\backbone.radio\build\backbone.radio.min.js" />
     <Content Include="lib\backbone.stickit\backbone.stickit.js" />
@@ -107,6 +107,8 @@
     <Content Include="lib\datatables.net\js\jquery.dataTables.min.js" />
     <Content Include="lib\decimal.js\decimal.min.js" />
     <Content Include="lib\jquery\dist\jquery.min.js" />
+    <Content Include="lib\localforage-backbone\dist\localforage.backbone.min.js" />
+    <Content Include="lib\localforage\dist\localforage.min.js" />
     <Content Include="lib\moment-timezone\moment-timezone-utils.js" />
     <Content Include="lib\moment-timezone\moment-timezone.js" />
     <Content Include="lib\moment\locale\af.js" />

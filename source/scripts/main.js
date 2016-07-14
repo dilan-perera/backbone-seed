@@ -11,8 +11,7 @@ require(['config'], function () {
         'backbone',
         'backbone.marionette',
         'backbone.radio-shim',
-        'bootstrap',
-        'Application'
+        'bootstrap'
     ], function (
         domReady,
         text,
@@ -22,22 +21,9 @@ require(['config'], function () {
         Backbone,
         Marionette,
         Radio,
-        Bootstrap,
-        Application)
+        Bootstrap)
     {
-    	var initializer = function() {
-    		var args = {
-    			initialData: window.initialData
-    		};
-
-    		var application = new Application(args);
-
-    		window.application = application;
-
-    		window.application.start();
-    	};
-
-     	require(['jquery-extensions', 'bootstrap'], function ()
+    	require(['jquery-extensions', 'bootstrap'], function ()
     	{
     		require(['bootstrap-material-design'], function ()
     		{
@@ -45,10 +31,21 @@ require(['config'], function () {
     			{
     				$(document).ready(function ()
     				{
-    					initializer();
+    					require(['Application'], function (Application)
+    					{
+    						var args = {
+    							initialData: window.initialData
+    						};
+
+    						var application = new Application(args);
+
+    						window.application = application;
+
+    						window.application.start();
+    					});
     				});
     			});
     		});
-     	});
+    	});
     });
 });
