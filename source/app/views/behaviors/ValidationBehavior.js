@@ -27,21 +27,23 @@ define(function (require)
     _.extend(Backbone.Validation.callbacks, {
     	valid: function (view, attr, selector)
     	{
-     		debugger;
-	   		var $el = view.$('[name=' + attr + ']'),
-				$group = $el.closest('.form-group');
+    		var $el = view.$('[name=' + attr + ']');
+    		var $group = $el.closest('.form-group');
+    		var $help = $group.find('.help-block');
 
     		$group.removeClass('has-error');
-    		$group.find('.help-block').html('').addClass('hidden');
+    		$help.html('');
+    		$help.addClass('hidden');
     	},
     	invalid: function (view, attr, error, selector)
     	{
-     		debugger;
-	   		var $el = view.$('[name=' + attr + ']'),
-				$group = $el.closest('.form-group');
+    		var $el = view.$('[name=' + attr + ']');
+    		var $group = $el.closest('.form-group');
+    		var $help = $group.find('.help-block');
 
     		$group.addClass('has-error');
-    		$group.find('.help-block').html(error).removeClass('hidden');
+    		$help.html(error);
+    		$help.removeClass('hidden');
     	}
     });
 

@@ -116,11 +116,6 @@ define(function (require)
 		setAge: function(value)
 		{
 			this.set('age', value);
-		},
-
-		validate: function()
-		{
-			debugger;
 		}
 
 		//#endregion

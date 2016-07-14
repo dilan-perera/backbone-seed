@@ -210,7 +210,6 @@ define(function (require)
 
     	_attemptDataSave: function()
     	{
-    		debugger;
     		if (this.model.isValid({ validate: true }))
     		{       
     			var request = {};
