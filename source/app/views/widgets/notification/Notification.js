@@ -9,7 +9,7 @@ define(function (require)
 
 	//#region Imports
 
-	var toastr = require('toastr');
+	var material = require('material');
 
 	//#endregion
 
@@ -33,30 +33,80 @@ define(function (require)
 
 	Notification.showSuccess = function (message, title)
 	{
+		debugger;
 		Notification._checkedConfigure();
 
-		toastr.success(message, title);
+		let content = Notification._getContent(message, title);
+
+		let data = {
+			message: content,
+		};
+
+		notification.MaterialSnackbar.showSnackbar(data);
 	}
 
 	Notification.showInformation = function (message, title)
 	{
-		toastr.info(message, title);
+		Notification._checkedConfigure();
+
+		let content = Notification._getContent(message, title);
+
+		let data = {
+			message: content,
+		};
+
+		notification.MaterialSnackbar.showSnackbar(data);
 	}
 
 	Notification.showWarning = function (message, title)
 	{
-		toastr.warning(message, title);
+		Notification._checkedConfigure();
+
+		let content = Notification._getContent(message, title);
+
+		let data = {
+			message: content,
+		};
+
+		notification.MaterialSnackbar.showSnackbar(data);
 	}
 
 	Notification.showError = function (message, title)
 	{
-		toastr.error(message, title);
+		Notification._checkedConfigure();
+
+		let content = Notification._getContent(message, title);
+
+		let data = {
+			message: content,
+		};
+
+		notification.MaterialSnackbar.showSnackbar(data);
 	}
 	
 	//#endregion
 
 	//#region Functions - Static Member - (helpers)
 	
+	Notification._getContent = function (message, title)
+	{
+		let content = '';
+
+		if (title)
+		{
+			content = title;
+
+			content += '\n\n';
+		}
+
+		if (message)
+		{
+			content += message;
+		}
+
+		return content;
+	}
+
 	Notification._checkedConfigure = function ()
 	{
 		if (!(Notification._isConfigured))
@@ -67,34 +117,16 @@ define(function (require)
 
 	Notification._configure = function ()
 	{
-		toastr.options = Notification._getDefaultConfiguration();
+		let notification = $('#notification');
+
+		componentHandler.upgradeElement(notification[0]);
 
 		Notification._isConfigured = true;
 	}
 
-	Notification._getDefaultConfiguration = function ()
-	{
-		return {
-			//containerId: 'notification',
-			positionClass: 'toast-bottom-center',
-			//showMethod: 'slideUp',
-			//hideMethod: 'slideDown'
-			/*
-			toastClass: 'alert',
-			iconClasses: {
-				error: 'alert-error',
-				info: 'alert-info',
-				success: 'alert-success',
-				warning: 'alert-warning'
-			*/
-		};
-	}
-
 	//#endregion
 
 	//#endregion
-
-	Notification._checkedConfigure();
-
+	
 	return Notification;
 });

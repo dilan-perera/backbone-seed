@@ -1,4 +1,10 @@
 ﻿
-#sidebarNavToggleButton {
-	color: #FFFFFF;
+#splash
+{
+	background-color: #FFFFFF;
+}
+
+#error
+{
+	background-color: #FF0000;
 }

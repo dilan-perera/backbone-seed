@@ -15,7 +15,6 @@ define(function (require) {
 
     var Route = require('routing/Route');
     var Header = require('views/widgets/header/Header');
-    var Content = require('views/widgets/content/Content');
     var Footer = require('views/widgets/footer/Footer');
     var ContentRegion = require('regions/ContentRegion');
     var SidebarRegion = require('regions/SidebarRegion');
@@ -27,7 +26,6 @@ define(function (require) {
     	//#region Fields - Instance Member
 
 		_header: null,
-		_content: null,
 		_footer: null,
 		_sidebarView: null,
     	_contentView: null,
@@ -66,7 +64,6 @@ define(function (require) {
         initialize: function ()
         {
         	this._header = new Header();
-        	this._content = new Content();
         	this._footer = new Footer();
 
         	this.addRegion('sidebar', {

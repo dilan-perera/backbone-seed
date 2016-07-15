@@ -63,12 +63,7 @@ define(function (require)
         		pushState: Application.USE_PUSH_STATE,
         		initialData: this.options.initialData
         	});
-
-        	if ($.material)
-        	{
-        		$.material.init();
-        	}
-
+			
         	if (Backbone.history)
         	{
         		if (!(Backbone.history.started))

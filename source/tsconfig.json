@@ -1,0 +1,14 @@
+﻿{
+	"compilerOptions": {
+        "module": "amd",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true
+    },
+	"exclude": [
+		"bin",
+		"obj",
+		"bower_components"
+	]
+}

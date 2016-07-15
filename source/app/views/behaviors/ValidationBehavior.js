@@ -16,34 +16,19 @@ define(function (require)
     var Validation = require('backbone-validation');
 
 	//#endregion
-
-	//http://jsfiddle.net/thedersen/udXL5/
-	//http://jsfiddle.net/thedersen/c3kK2/
-	//https://gist.github.com/driehle/2909552
-
-	// Extend the callbacks to work with Bootstrap, as used in this example
-	// See: http://thedersen.com/projects/backbone-validation/#configuration/callbacks
-
+	
     _.extend(Backbone.Validation.callbacks, {
     	valid: function (view, attr, selector)
     	{
     		var $el = view.$('[name=' + attr + ']');
-    		var $group = $el.closest('.form-group');
-    		var $help = $group.find('.help-block');
 
-    		$group.removeClass('has-error');
-    		$help.html('');
-    		$help.addClass('hidden');
+    		// TODO: implement
     	},
     	invalid: function (view, attr, error, selector)
     	{
     		var $el = view.$('[name=' + attr + ']');
-    		var $group = $el.closest('.form-group');
-    		var $help = $group.find('.help-block');
 
-    		$group.addClass('has-error');
-    		$help.html(error);
-    		$help.removeClass('hidden');
+			// TODO: implement
     	}
     });
 
