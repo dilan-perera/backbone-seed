@@ -74,11 +74,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="scripts\app\views\components\component\Component.ts" />
-    <TypeScriptCompile Include="scripts\app\views\components\htmlcomponent\HtmlComponent.ts" />
-    <TypeScriptCompile Include="scripts\app\views\components\materialcomponent\MaterialComponent.ts" />
     <TypeScriptCompile Include="source\app\Application.ts" />
-    <TypeScriptCompile Include="_references.ts" />
+    <TypeScriptCompile Include="source\_references.ts" />
     <Content Include=".bowerrc" />
     <Content Include="images\android-desktop.png" />
     <Content Include="images\favicon.png" />
@@ -260,9 +257,6 @@
     <Content Include="scripts\app\views\behaviors\MaterializingBehavior.js" />
     <Content Include="scripts\app\views\behaviors\NotifyingBehavior.js" />
     <Content Include="scripts\app\views\behaviors\ValidationBehavior.js" />
-    <Content Include="scripts\app\views\components\component\Component.js" />
-    <Content Include="scripts\app\views\components\htmlcomponent\HtmlComponent.js" />
-    <Content Include="scripts\app\views\components\materialcomponent\MaterialComponent.js" />
     <Content Include="scripts\app\views\pages\dashboard\DashboardView.js" />
     <Content Include="scripts\app\views\pages\formview\FormView.js" />
     <Content Include="scripts\app\views\pages\globalizationview\GlobalizationView.js" />
@@ -479,9 +473,6 @@
     <Content Include="typings\globals\es6-promise\typings.json" />
     <Content Include="scripts\app\globalization\res\en.json" />
     <Content Include="scripts\app\globalization\res\es.json" />
-    <Content Include="scripts\app\views\components\component\Component.js.map" />
-    <Content Include="scripts\app\views\components\htmlcomponent\HtmlComponent.js.map" />
-    <Content Include="scripts\app\views\components\materialcomponent\MaterialComponent.js.map" />
     <Content Include="scripts\app\views\pages\dashboard\main.tmpl" />
     <Content Include="scripts\app\views\pages\formview\main.tmpl" />
     <Content Include="scripts\app\views\pages\globalizationview\main.tmpl" />
@@ -496,6 +487,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\requirejs-plugins\lib\" />
+    <Folder Include="scripts\app\views\components\" />
+    <Folder Include="source\app\collections\" />
+    <Folder Include="source\app\views\behaviors\" />
+    <Folder Include="source\app\views\components\material\" />
+    <Folder Include="source\app\views\components\web\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
