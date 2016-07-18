@@ -1,6 +1,7 @@
 ﻿{
 	"compilerOptions": {
-        "module": "amd",
+		"module": "amd",
+		"outDir": "../scripts/",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,

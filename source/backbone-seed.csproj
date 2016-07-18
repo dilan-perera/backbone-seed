@@ -74,40 +74,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="scripts\app\views\components\component\Component.ts" />
+    <TypeScriptCompile Include="scripts\app\views\components\htmlcomponent\HtmlComponent.ts" />
+    <TypeScriptCompile Include="scripts\app\views\components\materialcomponent\MaterialComponent.ts" />
+    <TypeScriptCompile Include="source\app\Application.ts" />
+    <TypeScriptCompile Include="_references.ts" />
     <Content Include=".bowerrc" />
-    <Content Include="app\Application.js" />
-    <Content Include="app\controllers\DefaultController.js" />
-    <Content Include="app\globalization\Globalizer.js" />
-    <Content Include="app\layouts\DefaultLayout.js" />
-    <Content Include="app\messaging\Channel.js" />
-    <Content Include="app\messaging\GlobalEventManager.js" />
-    <Content Include="app\models\ProfileModel.js" />
-    <Content Include="app\regions\SidebarRegion.js" />
-    <Content Include="app\regions\ContentRegion.js" />
-    <Content Include="app\routing\DefaultRouter.js" />
-    <Content Include="app\routing\Route.js" />
-    <Content Include="app\services\SampleService.js" />
-    <Content Include="app\services\Service.js" />
-    <Content Include="app\routing\NavigationManager.js" />
-    <Content Include="app\views\behaviors\GlobalizingBehavior.js" />
-    <Content Include="app\views\behaviors\MaterializingBehavior.js" />
-    <Content Include="app\views\behaviors\NotifyingBehavior.js" />
-    <Content Include="app\views\behaviors\DataBindingBehavior.js" />
-    <Content Include="app\views\behaviors\EventCleanupBehavior.js" />
-    <Content Include="app\views\behaviors\ValidationBehavior.js" />
-    <Content Include="app\globalization\res\en.json" />
-    <Content Include="app\globalization\res\es.json" />
-    <None Include="app\views\pages\formview\main.tmpl" />
-    <Content Include="app\views\pages\globalizationview\GlobalizationView.js" />
-    <Content Include="app\views\ViewEventCategory.js" />
-    <Content Include="app\views\pages\formview\FormView.js" />
-    <Content Include="app\views\pages\tabularview\TabularView.js" />
-    <Content Include="app\views\widgets\footer\Footer.js" />
-    <Content Include="app\views\widgets\header\Header.js" />
-    <Content Include="app\views\widgets\menu\Menu.js" />
-    <Content Include="app\views\widgets\notification\Notification.js" />
-    <Content Include="app\views\_TemplateView.js" />
-    <Content Include="app\views\pages\dashboard\DashboardView.js" />
     <Content Include="images\android-desktop.png" />
     <Content Include="images\favicon.png" />
     <Content Include="images\ios-desktop.png" />
@@ -128,11 +100,7 @@
     <Content Include="lib\localforage\dist\localforage.min.js" />
     <Content Include="lib\material-design-lite\material.min.css" />
     <Content Include="lib\material-design-lite\material.min.js" />
-    <Content Include="lib\moment-range\dist\moment-range.js" />
     <Content Include="lib\moment-range\dist\moment-range.min.js" />
-    <Content Include="lib\moment-range\Gruntfile.js" />
-    <Content Include="lib\moment-range\lib\moment-range.js" />
-    <Content Include="lib\moment-range\test\moment-range.js" />
     <Content Include="lib\moment-timezone\moment-timezone-utils.js" />
     <Content Include="lib\moment-timezone\moment-timezone.js" />
     <Content Include="lib\moment\locale\af.js" />
@@ -271,14 +239,44 @@
     <Content Include="lib\select2-dist\dist\css\select2.min.css" />
     <Content Include="lib\select2-dist\dist\js\select2.full.min.js" />
     <Content Include="lib\underscore\underscore-min.js" />
+    <Content Include="scripts\app\Application.js" />
+    <Content Include="scripts\app\collections\readme.txt" />
+    <Content Include="scripts\app\controllers\DefaultController.js" />
+    <Content Include="scripts\app\globalization\Globalizer.js" />
+    <Content Include="scripts\app\layouts\DefaultLayout.js" />
+    <Content Include="scripts\app\messaging\Channel.js" />
+    <Content Include="scripts\app\messaging\GlobalEventManager.js" />
+    <Content Include="scripts\app\models\ProfileModel.js" />
+    <Content Include="scripts\app\regions\ContentRegion.js" />
+    <Content Include="scripts\app\regions\SidebarRegion.js" />
+    <Content Include="scripts\app\routing\DefaultRouter.js" />
+    <Content Include="scripts\app\routing\NavigationManager.js" />
+    <Content Include="scripts\app\routing\Route.js" />
+    <Content Include="scripts\app\services\SampleService.js" />
+    <Content Include="scripts\app\services\Service.js" />
+    <Content Include="scripts\app\views\behaviors\DataBindingBehavior.js" />
+    <Content Include="scripts\app\views\behaviors\EventCleanupBehavior.js" />
+    <Content Include="scripts\app\views\behaviors\GlobalizingBehavior.js" />
+    <Content Include="scripts\app\views\behaviors\MaterializingBehavior.js" />
+    <Content Include="scripts\app\views\behaviors\NotifyingBehavior.js" />
+    <Content Include="scripts\app\views\behaviors\ValidationBehavior.js" />
+    <Content Include="scripts\app\views\components\component\Component.js" />
+    <Content Include="scripts\app\views\components\htmlcomponent\HtmlComponent.js" />
+    <Content Include="scripts\app\views\components\materialcomponent\MaterialComponent.js" />
+    <Content Include="scripts\app\views\pages\dashboard\DashboardView.js" />
+    <Content Include="scripts\app\views\pages\formview\FormView.js" />
+    <Content Include="scripts\app\views\pages\globalizationview\GlobalizationView.js" />
+    <Content Include="scripts\app\views\pages\tabularview\TabularView.js" />
+    <Content Include="scripts\app\views\ViewEventCategory.js" />
+    <Content Include="scripts\app\views\widgets\footer\Footer.js" />
+    <Content Include="scripts\app\views\widgets\header\Header.js" />
+    <Content Include="scripts\app\views\widgets\menu\Menu.js" />
+    <Content Include="scripts\app\views\widgets\notification\Notification.js" />
+    <Content Include="scripts\app\views\_TemplateView.js" />
     <Content Include="scripts\extensions-jquery.js" />
     <Content Include="styles\structural.css" />
     <Content Include="styles\styles.css" />
     <Content Include="styles\themes\default\aesthetic.css" />
-    <None Include="app\views\pages\dashboard\main.tmpl" />
-    <Content Include="app\views\pages\tabularview\main.tmpl" />
-    <Content Include="app\views\pages\globalizationview\main.tmpl" />
-    <None Include="app\views\widgets\menu\main.tmpl" />
     <None Include="bower.json" />
     <Content Include="favicon.ico" />
     <Content Include="index.html" />
@@ -472,11 +470,6 @@
     <Content Include="typings\globals\require\typings.json" />
     <Content Include="typings\globals\select2\typings.json" />
     <Content Include="typings\globals\underscore\typings.json" />
-    <Content Include="lib\moment-range\.bower.json" />
-    <Content Include="lib\moment-range\bower.json" />
-    <Content Include="lib\moment-range\package.json" />
-    <Content Include="lib\moment-range\README.md" />
-    <Content Include="lib\moment-range\UNLICENSE" />
     <Content Include="typings\globals\moment-range\typings.json" />
     <Content Include="typings\globals\moment-timezone\typings.json" />
     <Content Include="typings\globals\moment\typings.json" />
@@ -484,6 +477,16 @@
     <Content Include="typings\globals\backbone-global\typings.json" />
     <Content Include="typings\globals\moment-node\typings.json" />
     <Content Include="typings\globals\es6-promise\typings.json" />
+    <Content Include="scripts\app\globalization\res\en.json" />
+    <Content Include="scripts\app\globalization\res\es.json" />
+    <Content Include="scripts\app\views\components\component\Component.js.map" />
+    <Content Include="scripts\app\views\components\htmlcomponent\HtmlComponent.js.map" />
+    <Content Include="scripts\app\views\components\materialcomponent\MaterialComponent.js.map" />
+    <Content Include="scripts\app\views\pages\dashboard\main.tmpl" />
+    <Content Include="scripts\app\views\pages\formview\main.tmpl" />
+    <Content Include="scripts\app\views\pages\globalizationview\main.tmpl" />
+    <Content Include="scripts\app\views\pages\tabularview\main.tmpl" />
+    <Content Include="scripts\app\views\widgets\menu\main.tmpl" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -492,7 +495,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\collections\" />
     <Folder Include="lib\requirejs-plugins\lib\" />
   </ItemGroup>
   <ItemGroup>
@@ -502,9 +504,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\views\components\component\Component.ts" />
-    <TypeScriptCompile Include="app\views\components\htmlcomponent\HtmlComponent.ts" />
-    <TypeScriptCompile Include="app\views\components\materialcomponent\MaterialComponent.ts" />
     <TypeScriptCompile Include="typings\globals\backbone-global\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\backbone.radio\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\backbone\index.d.ts" />
