@@ -75,12 +75,19 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="source\app\Application.ts" />
+    <TypeScriptCompile Include="source\app\messaging\Channel.ts" />
+    <TypeScriptCompile Include="source\app\messaging\ChannelSpecification.ts" />
+    <TypeScriptCompile Include="source\app\messaging\GlobalEventManager.ts" />
+    <TypeScriptCompile Include="source\app\routing\DefaultRouter.ts" />
+    <TypeScriptCompile Include="source\app\routing\NavigableRouter.ts" />
+    <TypeScriptCompile Include="source\app\routing\Route.ts" />
+    <TypeScriptCompile Include="source\app\routing\RoutingSpecification.ts" />
     <TypeScriptCompile Include="source\_references.ts" />
     <Content Include=".bowerrc" />
-    <Content Include="images\android-desktop.png" />
-    <Content Include="images\favicon.png" />
-    <Content Include="images\ios-desktop.png" />
-    <Content Include="images\touch\ms-touch-icon-144x144-precomposed.png" />
+    <Content Include="media\images\android-desktop.png" />
+    <Content Include="media\images\favicon.png" />
+    <Content Include="media\images\ios-desktop.png" />
+    <Content Include="media\images\touch\ms-touch-icon-144x144-precomposed.png" />
     <Content Include="lib\backbone-brace-nytimes-cms\dist\backbone.brace.min.js" />
     <Content Include="lib\backbone-nested-model\backbone-nested.js" />
     <Content Include="lib\backbone-validation\dist\backbone-validation-amd-min.js" />
@@ -478,6 +485,8 @@
     <Content Include="scripts\app\views\pages\globalizationview\main.tmpl" />
     <Content Include="scripts\app\views\pages\tabularview\main.tmpl" />
     <Content Include="scripts\app\views\widgets\menu\main.tmpl" />
+    <Content Include="source\app\views\pages\dashboard\main.tmpl" />
+    <Content Include="tslint.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -489,6 +498,12 @@
     <Folder Include="lib\requirejs-plugins\lib\" />
     <Folder Include="scripts\app\views\components\" />
     <Folder Include="source\app\collections\" />
+    <Folder Include="source\app\controllers\" />
+    <Folder Include="source\app\globalization\" />
+    <Folder Include="source\app\layouts\" />
+    <Folder Include="source\app\models\" />
+    <Folder Include="source\app\regions\" />
+    <Folder Include="source\app\services\" />
     <Folder Include="source\app\views\behaviors\" />
     <Folder Include="source\app\views\components\material\" />
     <Folder Include="source\app\views\components\web\" />

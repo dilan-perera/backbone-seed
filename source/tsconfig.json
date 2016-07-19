@@ -1,14 +1,15 @@
 ﻿{
-	"compilerOptions": {
-		"module": "amd",
-		"rootDir": "source/",
-		"outDir": "scripts/",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-		"sourceMap": true,
-		"pretty": true
-    },
+  "compilerOptions": {
+    "target": "es5",
+    "module": "amd",
+    "rootDir": "source/",
+    //"outDir": "scripts/",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "pretty": true
+  },
 	"exclude": [
 		"bin",
 		"obj",
