@@ -285,6 +285,7 @@
     <Content Include="scripts\config.js" />
     <Content Include="scripts\main.js" />
     <Content Include="packages.config" />
+    <Content Include="styles\dataTables.material.min.css" />
     <Content Include="styles\themes\default\material.red-indigo.min.css" />
     <Content Include="web.config" />
     <Content Include="lib\moment-timezone\data\packed\latest.json" />
