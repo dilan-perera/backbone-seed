@@ -60,6 +60,13 @@ define(function (require)
 			viewName: 'GlobalizationView', viewPath: 'views/pages/globalizationview/GlobalizationView'
     	},
 
+    	ROUTE_PARAMS: {
+    		value: 6, name: 'RouteParams',
+    		path: 'routeparams?name=:name', controller: 'Default', action: 'showRouteParams',
+    		router: 'Default', baseUrl: 'routeparams',
+			viewName: 'RouteParamsView', viewPath: 'views/pages/routeparamsview/RouteParamsView'
+    	}
+
     	//#endregion
 
     };

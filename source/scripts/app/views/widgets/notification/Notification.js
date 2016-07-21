@@ -33,7 +33,6 @@ define(function (require)
 
 	Notification.showSuccess = function (message, title)
 	{
-		debugger;
 		Notification._checkedConfigure();
 
 		let content = Notification._getContent(message, title);

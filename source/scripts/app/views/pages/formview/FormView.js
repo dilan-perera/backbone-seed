@@ -45,11 +45,13 @@ define(function (require)
     	ui:
 		{
 			'inputName': '#inputName',
+			'cancelFormActionButton': '#cancelFormActionButton',
 			'acceptFormActionButton': '#acceptFormActionButton'
     	},
 
     	events:
 		{
+		    'click @ui.cancelFormActionButton': '_onCancelClicked',
 			'click @ui.acceptFormActionButton': '_onAcceptClicked'
 		},
 
@@ -125,6 +127,15 @@ define(function (require)
     	onDestroy: function ()
     	{
     		this._sampleService.destroy();
+    	},
+
+    	_onCancelClicked: function()
+    	{
+    	    var data = {
+    	        name: this.ui.inputName.val()
+    	    }
+
+    	    NavigationManager.toRouteParamsView(data);
     	},
 
     	_onAcceptClicked: function(e)

@@ -101,8 +101,8 @@ define(function (require)
     	{
     		var successCallback = $.proxy(this._onSampleTabularDataSaveSuccessful, this);
     		var failureCallback = $.proxy(this._onSampleTabularDataSaveFailure, this);
-    		debugger;
-    		$.ajax({
+
+            $.ajax({
     			url: '/Services/AdminService/getSampleTabularData',
     			method: 'POST',
     			contentType: 'application/json; charset=utf-8',

@@ -74,13 +74,22 @@ define(function (require) {
         	this._showView('show:globalization', {});
         },
 
+        showRouteParams: function (name)
+        {
+            var data = {
+                name: name
+            };
+
+        	this._showView('show:route:params', data);
+        },
+
     	//#endregion
 
     	//#region Functions - Instance Member - (helpers)
 
         _showView: function (viewEvent, options)
         {
-        	this.layout.triggerMethod(viewEvent);
+        	this.layout.triggerMethod(viewEvent, options);
         }
 
     	//#endregion

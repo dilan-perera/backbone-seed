@@ -124,6 +124,15 @@ define(function (require) {
 				initialData);
         },
 
+        onShowRouteParams: function(initialData)
+        {
+        	this._showView(
+				Route.ROUTE_PARAMS.viewPath,
+				initialData,
+				'views/widgets/menu/Menu',
+				initialData);
+        },
+
     	//#endregion
 
     	//#region Functions - Instance Member - (helpers)

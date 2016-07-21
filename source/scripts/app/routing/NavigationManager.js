@@ -51,6 +51,11 @@ define(function (require)
     	NavigationManager.navigate(Route.GLOBALIZATION);
     }
 
+    NavigationManager.toRouteParamsView = function(data)
+    {
+    	NavigationManager.navigate(Route.ROUTE_PARAMS, data);
+    }
+
     //#endregion
 
     //#region Functions - Static Member - (helpers)
