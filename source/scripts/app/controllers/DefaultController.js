@@ -64,6 +64,11 @@ define(function (require) {
         	this._showView('show:form', {});
         },
 
+        showTabular: function ()
+        {
+        	this._showView('show:tabular', {});
+        },
+
         showGlobalization: function ()
         {
         	this._showView('show:globalization', {});

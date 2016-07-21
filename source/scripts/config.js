@@ -20,7 +20,7 @@ require.config({
         'backbone-validation': '../../lib/backbone-validation/dist/backbone-validation-amd-min',
         'localforage': '../../lib/localforage/dist/localforage.min',
         'localforage-backbone': '../../lib/localforage-backbone/dist/localforage.backbone.min',
-        'datatables.net': '../../lib/datatables-net/js/jquery.dataTables.min',
+        'datatables.net': '../../lib/datatables.net/js/jquery.dataTables.min',
         'datatables.net-responsive': '../../lib/datatables.net-responsive/js/dataTables.responsive.min',
         'jquery': '../../lib/jquery/dist/jquery.min',
         'jquery-extensions': '../../scripts/extensions-jquery',

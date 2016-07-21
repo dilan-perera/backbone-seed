@@ -98,22 +98,17 @@ define(function (require)
 
     	render: function ()
     	{
-    		this.$el.html(this.template());
+    	    Marionette.View.prototype.render.call(this);
+
+    	    this.$el.html(this.template());
     		this.bindUIElements();
 
 			this._setTitle();
 			this._notifyNavigationCompletion();
 
-			Marionette.View.prototype.render.call(this);
-
 			this._attemptDataLoad();
 
     		return this;
-    	},
-
-    	onDestroy: function ()
-    	{
-    		this._sampleService.destroy();
     	},
 
     	template: function()
@@ -126,6 +121,11 @@ define(function (require)
     	//#region Functions - Instance Member - (callbacks)
 
     	//#region Functions - Instance Member - (callbacks) - (UI event handlers)
+
+    	onDestroy: function ()
+    	{
+    		this._sampleService.destroy();
+    	},
 
     	_onAcceptClicked: function(e)
     	{

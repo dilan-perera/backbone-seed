@@ -267,6 +267,7 @@
     <Content Include="scripts\app\views\pages\dashboard\DashboardView.js" />
     <Content Include="scripts\app\views\pages\formview\FormView.js" />
     <Content Include="scripts\app\views\pages\globalizationview\GlobalizationView.js" />
+    <Content Include="scripts\app\views\pages\routeparamsview\RouteParamsView.js" />
     <Content Include="scripts\app\views\pages\tabularview\TabularView.js" />
     <Content Include="scripts\app\views\ViewEventCategory.js" />
     <Content Include="scripts\app\views\widgets\footer\Footer.js" />
@@ -487,6 +488,7 @@
     <Content Include="scripts\app\views\widgets\menu\main.tmpl" />
     <Content Include="source\app\views\pages\dashboard\main.tmpl" />
     <Content Include="tslint.json" />
+    <Content Include="scripts\app\views\pages\routeparamsview\main.tmpl" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

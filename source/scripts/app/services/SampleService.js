@@ -95,6 +95,34 @@ define(function (require)
 			// TODO: get exception data
 
     		this.triggerMethod('dataSaveFailed', ex);
+    	},
+
+        getSampleTabularData: function(request)
+    	{
+    		var successCallback = $.proxy(this._onSampleTabularDataSaveSuccessful, this);
+    		var failureCallback = $.proxy(this._onSampleTabularDataSaveFailure, this);
+    		debugger;
+    		$.ajax({
+    			url: '/Services/AdminService/getSampleTabularData',
+    			method: 'POST',
+    			contentType: 'application/json; charset=utf-8',
+    			dataType: 'json',
+                data: JSON.stringify(request)
+			}).done(successCallback).fail(failureCallback);			
+    	},
+
+    	_onSampleTabularDataSaveSuccessful: function(data, textStatus, jqXHR)
+    	{
+			this.triggerMethod('sampleTabularDataRetrievalSuccessful', data);
+    	},
+
+    	_onSampleTabularDataSaveFailure: function(jqXHR, textStatus, errorThrown)
+    	{
+    		var ex = null;
+
+			// TODO: get exception data
+
+    		this.triggerMethod('sampleTabularDataRetrievalFailed', ex);
     	}
 
     	//#endregion

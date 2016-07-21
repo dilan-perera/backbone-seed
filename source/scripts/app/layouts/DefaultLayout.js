@@ -106,6 +106,15 @@ define(function (require) {
 				initialData);
         },
 
+        onShowTabular: function(initialData)
+        {
+        	this._showView(
+				Route.TABULAR.viewPath,
+				initialData,
+				'views/widgets/menu/Menu',
+				initialData);
+        },
+
         onShowGlobalization: function(initialData)
         {
         	this._showView(
