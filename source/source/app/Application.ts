@@ -1,8 +1,8 @@
 ﻿//#region Dependencies
 
 /// <reference path="../_references.ts"/>
-/// <reference path="routing/NavigableRouter.ts"/>
-/// <reference path="routing/DefaultRouter.ts"/>
+/// <reference path="views/routing/NavigableRouter.ts"/>
+/// <reference path="views/routing/DefaultRouter.ts"/>
 
 //#endregion
 
@@ -12,9 +12,9 @@ import $ = require("jquery");
 import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
 
-import RouteImport = require("routing/Route");
-import NavigableRouterImport = require("routing/NavigableRouter");
-import DefaultRouterImport = require("routing/DefaultRouter");
+import RouteImport = require("views/routing/Route");
+import NavigableRouterImport = require("views/routing/NavigableRouter");
+import DefaultRouterImport = require("views/routing/DefaultRouter");
 
 //#endregion
 
