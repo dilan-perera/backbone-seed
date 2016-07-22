@@ -16,3 +16,6 @@
 /// <reference path="globals/requirejs-domready/domready/index.d.ts" />
 /// <reference path="globals/select2/index.d.ts" />
 /// <reference path="globals/underscore/index.d.ts" />
+/// <reference path="application/Application.d.ts" />
+/// <reference path="application/BehaviorContainer.d.ts" />
+/// <reference path="application/Window.d.ts" />

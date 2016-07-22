@@ -78,10 +78,13 @@
     <TypeScriptCompile Include="source\app\messaging\Channel.ts" />
     <TypeScriptCompile Include="source\app\messaging\ChannelSpecification.ts" />
     <TypeScriptCompile Include="source\app\messaging\GlobalEventManager.ts" />
-    <TypeScriptCompile Include="source\app\routing\DefaultRouter.ts" />
-    <TypeScriptCompile Include="source\app\routing\NavigableRouter.ts" />
-    <TypeScriptCompile Include="source\app\routing\Route.ts" />
-    <TypeScriptCompile Include="source\app\routing\RoutingSpecification.ts" />
+    <TypeScriptCompile Include="source\app\views\routing\DefaultRouter.ts" />
+    <TypeScriptCompile Include="source\app\views\routing\NavigableRouter.ts" />
+    <TypeScriptCompile Include="source\app\views\routing\NavigationManager.ts" />
+    <TypeScriptCompile Include="source\app\views\routing\Navigator.ts" />
+    <TypeScriptCompile Include="source\app\views\routing\Route.ts" />
+    <TypeScriptCompile Include="source\app\views\routing\RouteData.ts" />
+    <TypeScriptCompile Include="source\app\views\routing\RoutingSpecification.ts" />
     <TypeScriptCompile Include="source\_references.ts" />
     <Content Include=".bowerrc" />
     <Content Include="media\images\android-desktop.png" />
@@ -500,16 +503,15 @@
   <ItemGroup>
     <Folder Include="lib\requirejs-plugins\lib\" />
     <Folder Include="scripts\app\views\components\" />
-    <Folder Include="source\app\collections\" />
-    <Folder Include="source\app\controllers\" />
     <Folder Include="source\app\globalization\" />
-    <Folder Include="source\app\layouts\" />
-    <Folder Include="source\app\models\" />
-    <Folder Include="source\app\regions\" />
+    <Folder Include="source\app\models\collections\" />
     <Folder Include="source\app\services\" />
     <Folder Include="source\app\views\behaviors\" />
     <Folder Include="source\app\views\components\material\" />
     <Folder Include="source\app\views\components\web\" />
+    <Folder Include="source\app\views\controllers\" />
+    <Folder Include="source\app\views\layouts\" />
+    <Folder Include="source\app\views\regions\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -518,6 +520,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="typings\application\BehaviorContainer.d.ts" />
+    <TypeScriptCompile Include="typings\application\Application.d.ts" />
     <TypeScriptCompile Include="typings\globals\backbone-global\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\backbone.radio\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\backbone\index.d.ts" />
@@ -536,6 +540,7 @@
     <TypeScriptCompile Include="typings\globals\require\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\select2\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\underscore\index.d.ts" />
+    <TypeScriptCompile Include="typings\application\Window.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>
   <ItemGroup>

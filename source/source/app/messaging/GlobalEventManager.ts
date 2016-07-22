@@ -75,8 +75,8 @@ export namespace BackboneSeed.Messaging
         private onCultureChangeRequested(settings: any): void
         {
             /*
-    		var oldCulture = Globalizer.getCulture();
-    		var newCulture = settings.culture;
+    		let oldCulture = Globalizer.getCulture();
+    		let newCulture = settings.culture;
 
     		Globalizer.setCulture(newCulture);
 

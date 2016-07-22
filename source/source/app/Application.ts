@@ -13,6 +13,8 @@ import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
 
 import RouteImport = require("views/routing/Route");
+import RouteDataImport = require("views/routing/RouteData");
+import NavigatorImport = require("views/routing/Navigator");
 import NavigableRouterImport = require("views/routing/NavigableRouter");
 import DefaultRouterImport = require("views/routing/DefaultRouter");
 
@@ -21,6 +23,8 @@ import DefaultRouterImport = require("views/routing/DefaultRouter");
 //#region Aliases
 
 import Route = RouteImport.BackboneSeed.Routing.Route;
+import RouteData = RouteDataImport.BackboneSeed.Routing.RouteData;
+import Navigator = NavigatorImport.BackboneSeed.Routing.Navigator;
 import NavigableRouter = NavigableRouterImport.BackboneSeed.Routing.NavigableRouter;
 import DefaultRouter = DefaultRouterImport.BackboneSeed.Routing.DefaultRouter;
 
@@ -32,7 +36,7 @@ export namespace BackboneSeed
     /**
      * The application.
      */
-    export class Application extends Marionette.Application
+    export class Application extends Marionette.Application implements BootableApplication, Navigator
     {
 
         //#region Constants
@@ -59,6 +63,41 @@ export namespace BackboneSeed
         //#endregion
 
         //#region Functions - Instance Member
+
+        //#region Functions - Instance Member - (BootableApplication Members)
+
+        /**
+         * Starts the application.
+         * @param {any} options? The options to be used in initializing the application (optional).
+         */
+        public start(options?: any): void
+        {
+            super.start(options);
+        }
+
+        //#endregion
+
+        //#region Functions - Instance Member - (Navigator Members)
+
+        /**
+         * Navigates to the specified route, with the given data.
+         * @param {any} route The route to be navigated to.
+         * @param {any} data The data to be used in routing (optional).
+         */
+        public navigate(route: Route, data?: RouteData): void
+        {
+        	let router: NavigableRouter = this.routers[route.router];
+
+        	if (router) 
+        	{
+        		if (router.processNavigationRequest)
+        		{
+        			router.processNavigationRequest(route, data);
+        		}
+        	}
+        }
+
+        //#endregion
 
         //#region Functions - Instance Member - (Application Members)
 
@@ -122,24 +161,6 @@ export namespace BackboneSeed
         //#endregion
 
         //#region Functions - Instance Member - (Application Members) - (helpers) - (other)
-
-        /**
-         * Navigates to the specified route, with the given data.
-         * @param {any} route The route to be navigated to.
-         * @param {any} data The data to be used in routing (optional).
-         */
-        public navigate(route: any, data?: any): void
-        {
-        	let router: NavigableRouter = this.routers[route.router];
-
-        	if (router) 
-        	{
-        		if (router.processNavigationRequest)
-        		{
-        			router.processNavigationRequest(route, data);
-        		}
-        	}
-        }
 
         /**
          * Boots the application.
